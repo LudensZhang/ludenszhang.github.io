@@ -15,12 +15,11 @@
     --text: #171a21;
     --muted: #5b6472;
     --bg: #eef1f7;
-    /* liquid glass */
-    --glass-bg: linear-gradient(135deg, rgba(255,255,255,.62), rgba(255,255,255,.30));
-    --glass-bg-strong: linear-gradient(135deg, rgba(255,255,255,.78), rgba(255,255,255,.45));
-    --glass-border: rgba(255,255,255,.65);
-    --glass-shadow: 0 20px 45px -22px rgba(31,38,135,.28), 0 2px 6px rgba(31,38,135,.06);
-    --glass-highlight: inset 0 1px 0 rgba(255,255,255,.85), inset 0 -1px 0 rgba(255,255,255,.15);
+    --card: rgba(255,255,255,.72);
+    --card-strong: rgba(255,255,255,.88);
+    --card-border: rgba(255,255,255,.9);
+    --card-shadow: 0 18px 40px -22px rgba(31,38,135,.25), 0 2px 6px rgba(31,38,135,.05);
+    --card-highlight: inset 0 1px 0 rgba(255,255,255,.95);
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -29,11 +28,11 @@
       --text: #e9ebf1;
       --muted: #9aa3b2;
       --bg: #0b0d13;
-      --glass-bg: linear-gradient(135deg, rgba(255,255,255,.10), rgba(255,255,255,.04));
-      --glass-bg-strong: linear-gradient(135deg, rgba(255,255,255,.16), rgba(255,255,255,.07));
-      --glass-border: rgba(255,255,255,.16);
-      --glass-shadow: 0 20px 45px -22px rgba(0,0,0,.65), 0 2px 6px rgba(0,0,0,.3);
-      --glass-highlight: inset 0 1px 0 rgba(255,255,255,.22), inset 0 -1px 0 rgba(255,255,255,.04);
+      --card: rgba(26,30,42,.72);
+      --card-strong: rgba(32,37,52,.9);
+      --card-border: rgba(255,255,255,.09);
+      --card-shadow: 0 18px 40px -22px rgba(0,0,0,.6), 0 2px 6px rgba(0,0,0,.3);
+      --card-highlight: inset 0 1px 0 rgba(255,255,255,.1);
     }
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -41,42 +40,37 @@
   body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     color: var(--text);
-    background: var(--bg);
     line-height: 1.65;
     -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
+    /* static mesh gradient — no filters, no animation: cheap to composite */
+    background:
+      radial-gradient(900px 600px at 8% -5%, rgba(122,162,255,.35), transparent 60%),
+      radial-gradient(800px 550px at 95% 15%, rgba(45,212,191,.28), transparent 60%),
+      radial-gradient(700px 600px at 30% 105%, rgba(183,139,255,.25), transparent 60%),
+      var(--bg);
+    background-attachment: fixed;
+  }
+  @media (prefers-color-scheme: dark) {
+    body {
+      background:
+        radial-gradient(900px 600px at 8% -5%, rgba(79,110,247,.16), transparent 60%),
+        radial-gradient(800px 550px at 95% 15%, rgba(14,165,164,.12), transparent 60%),
+        radial-gradient(700px 600px at 30% 105%, rgba(147,105,247,.12), transparent 60%),
+        var(--bg);
+      background-attachment: fixed;
+    }
   }
   a { color: var(--accent); text-decoration: none; }
 
-  /* ---------- Ambient background blobs ---------- */
-  .blobs { position: fixed; inset: 0; z-index: -1; overflow: hidden; }
-  .blob {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(90px);
-    opacity: .55;
-    will-change: transform;
-  }
-  .blob.b1 { width: 520px; height: 520px; left: -120px; top: -100px; background: radial-gradient(circle, #7aa2ff, transparent 65%); animation: drift1 26s ease-in-out infinite alternate; }
-  .blob.b2 { width: 460px; height: 460px; right: -140px; top: 12%; background: radial-gradient(circle, #2dd4bf, transparent 65%); animation: drift2 32s ease-in-out infinite alternate; }
-  .blob.b3 { width: 420px; height: 420px; left: 22%; bottom: -180px; background: radial-gradient(circle, #b78bff, transparent 65%); animation: drift3 38s ease-in-out infinite alternate; }
-  @keyframes drift1 { to { transform: translate(90px, 70px) scale(1.12); } }
-  @keyframes drift2 { to { transform: translate(-80px, 110px) scale(.92); } }
-  @keyframes drift3 { to { transform: translate(70px, -90px) scale(1.08); } }
-  @media (prefers-color-scheme: dark) { .blob { opacity: .28; } }
-  @media (prefers-reduced-motion: reduce) { .blob { animation: none; } }
-
-  /* ---------- Liquid glass primitive ---------- */
-  .glass {
-    background: var(--glass-bg);
-    -webkit-backdrop-filter: blur(22px) saturate(170%);
-    backdrop-filter: blur(22px) saturate(170%);
-    border: 1px solid var(--glass-border);
+  /* ---------- Card primitive (no backdrop-filter: stays fast) ---------- */
+  .card {
+    background: var(--card);
+    border: 1px solid var(--card-border);
     border-radius: 22px;
-    box-shadow: var(--glass-shadow), var(--glass-highlight);
+    box-shadow: var(--card-shadow), var(--card-highlight);
   }
 
-  /* ---------- Floating pill nav ---------- */
+  /* ---------- Floating pill nav (real liquidGL refraction) ---------- */
   nav {
     position: fixed; top: 14px; left: 50%; transform: translateX(-50%);
     z-index: 100;
@@ -86,6 +80,10 @@
     max-width: calc(100vw - 28px);
     overflow-x: auto;
     scrollbar-width: none;
+    /* CSS fallback look; liquidGL replaces this with true refraction */
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    box-shadow: var(--card-shadow), var(--card-highlight);
   }
   nav::-webkit-scrollbar { display: none; }
   nav a {
@@ -94,29 +92,14 @@
     white-space: nowrap;
     transition: color .15s ease, background .15s ease;
   }
-  nav a:hover { color: var(--text); background: rgba(255,255,255,.35); }
-  @media (prefers-color-scheme: dark) { nav a:hover { background: rgba(255,255,255,.08); } }
+  nav a:hover { color: var(--text); background: rgba(127,147,200,.16); }
 
   /* ---------- Hero ---------- */
-  .hero { max-width: 900px; margin: 0 auto; padding: 118px 24px 0; }
+  .hero { max-width: 900px; margin: 0 auto; padding: 116px 24px 0; }
   .hero-card {
-    position: relative;
     padding: 46px 48px;
     display: flex; align-items: center; gap: 42px;
-    overflow: hidden;
   }
-  /* specular sweep */
-  .hero-card::after {
-    content: "";
-    position: absolute; inset: 0;
-    background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,.22) 45%, transparent 60%);
-    transform: translateX(-120%);
-    animation: sheen 7s ease-in-out infinite;
-    pointer-events: none;
-  }
-  @keyframes sheen { 0%, 55% { transform: translateX(-120%); } 80%, 100% { transform: translateX(120%); } }
-  @media (prefers-reduced-motion: reduce) { .hero-card::after { animation: none; display: none; } }
-
   .avatar-ring {
     flex-shrink: 0;
     padding: 5px;
@@ -145,24 +128,23 @@
   .hero-links a {
     display: inline-flex; align-items: center; gap: 7px;
     color: var(--text);
-    background: var(--glass-bg-strong);
-    -webkit-backdrop-filter: blur(14px) saturate(160%);
-    backdrop-filter: blur(14px) saturate(160%);
-    border: 1px solid var(--glass-border);
-    box-shadow: var(--glass-highlight), 0 6px 16px -8px rgba(31,38,135,.25);
+    background: var(--card-strong);
+    border: 1px solid var(--card-border);
+    box-shadow: var(--card-highlight), 0 6px 16px -8px rgba(31,38,135,.25);
     border-radius: 999px;
     padding: 8px 18px;
     font-size: .88rem; font-weight: 600;
     transition: transform .18s ease, box-shadow .18s ease;
   }
-  .hero-links a:hover { transform: translateY(-2px); box-shadow: var(--glass-highlight), 0 12px 24px -8px rgba(79,110,247,.4); }
+  .hero-links a:hover { transform: translateY(-2px); box-shadow: var(--card-highlight), 0 12px 24px -8px rgba(79,110,247,.4); }
   .hero-links svg { width: 15px; height: 15px; fill: var(--accent); }
 
   /* ---------- Layout ---------- */
   .container { max-width: 900px; margin: 0 auto; padding: 10px 24px 80px; }
   section { margin-top: 56px; scroll-margin-top: 96px; }
-  .reveal { opacity: 0; transform: translateY(20px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity .55s ease, transform .55s ease; }
   .reveal.visible { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
 
   h2 {
     display: flex; align-items: center; gap: 12px;
@@ -180,7 +162,7 @@
     letter-spacing: .08em; margin: 24px 0 12px;
     display: flex; align-items: center; gap: 12px;
   }
-  h3.year::after { content: ""; flex: 1; height: 1px; background: var(--glass-border); opacity: .6; }
+  h3.year::after { content: ""; flex: 1; height: 1px; background: var(--card-border); opacity: .7; }
 
   .pad { padding: 28px 30px; }
 
@@ -222,7 +204,7 @@
     content: "";
     position: absolute; left: -25px; top: 7px;
     width: 12px; height: 12px; border-radius: 50%;
-    background: var(--glass-bg-strong);
+    background: var(--card-strong);
     border: 2.5px solid var(--accent);
     box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 14%, transparent);
   }
@@ -241,20 +223,18 @@
 
   /* ---------- Research directions ---------- */
   .research-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
-  .research-card {
-    padding: 24px 26px;
-    transition: transform .2s ease, box-shadow .2s ease;
-  }
-  .research-card:hover { transform: translateY(-4px); box-shadow: var(--glass-shadow), var(--glass-highlight), 0 24px 50px -20px rgba(79,110,247,.35); }
-  .research-card .icon {
-    width: 44px; height: 44px; border-radius: 14px;
+  .research-card { padding: 24px 26px; transition: transform .2s ease, box-shadow .2s ease; }
+  .research-card:hover { transform: translateY(-4px); box-shadow: var(--card-shadow), var(--card-highlight), 0 24px 50px -20px rgba(79,110,247,.35); }
+  .icon {
+    width: 46px; height: 46px; border-radius: 15px;
     display: flex; align-items: center; justify-content: center;
-    background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 18%, transparent), color-mix(in srgb, var(--accent-2) 18%, transparent));
-    border: 1px solid var(--glass-border);
-    box-shadow: var(--glass-highlight);
-    margin-bottom: 13px;
+    background: linear-gradient(140deg, color-mix(in srgb, var(--accent) 16%, transparent), color-mix(in srgb, var(--accent-2) 16%, transparent));
+    border: 1px solid color-mix(in srgb, var(--accent) 22%, transparent);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.5), 0 6px 14px -8px rgba(79,110,247,.45);
+    color: var(--accent);
+    margin-bottom: 14px;
   }
-  .research-card .icon svg { width: 21px; height: 21px; fill: var(--accent); }
+  .icon svg { width: 24px; height: 24px; }
   .research-card h4 { font-size: 1rem; font-weight: 700; margin-bottom: 6px; }
   .research-card p { color: var(--muted); font-size: .88rem; }
 
@@ -264,7 +244,7 @@
     padding: 15px 22px;
     border-radius: 16px;
     border-left: 3px solid var(--accent);
-    transition: transform .16s ease, box-shadow .16s ease;
+    transition: transform .16s ease;
   }
   ul.pubs li:hover { transform: translateX(4px); }
   .pub-title { font-weight: 600; font-size: .94rem; line-height: 1.5; }
@@ -293,7 +273,7 @@
     color: var(--text);
     transition: transform .2s ease, box-shadow .2s ease;
   }
-  .proj:hover { transform: translateY(-4px); box-shadow: var(--glass-shadow), var(--glass-highlight), 0 24px 50px -20px rgba(79,110,247,.35); }
+  .proj:hover { transform: translateY(-4px); box-shadow: var(--card-shadow), var(--card-highlight), 0 24px 50px -20px rgba(79,110,247,.35); }
   .proj-name {
     display: flex; align-items: center; gap: 8px;
     font-weight: 700; color: var(--accent); font-size: 1rem;
@@ -310,7 +290,7 @@
   }
 
   @media (max-width: 640px) {
-    .hero { padding-top: 100px; }
+    .hero { padding-top: 98px; }
     .hero-card { flex-direction: column; text-align: center; padding: 34px 26px; gap: 20px; }
     .hero-links { justify-content: center; }
     .proj-grid, .research-grid { grid-template-columns: 1fr; }
@@ -323,13 +303,7 @@
 </head>
 <body>
 
-<div class="blobs" aria-hidden="true">
-  <div class="blob b1"></div>
-  <div class="blob b2"></div>
-  <div class="blob b3"></div>
-</div>
-
-<nav class="glass">
+<nav id="glassNav">
   <a href="#about">About</a>
   <a href="#education">Education</a>
   <a href="#research">Research</a>
@@ -338,9 +312,9 @@
 </nav>
 
 <header class="hero">
-  <div class="hero-card glass">
+  <div class="hero-card card">
     <div class="avatar-ring">
-      <img class="avatar" src="https://github.com/LudensZhang.png" alt="Haohong Zhang">
+      <img class="avatar" src="https://github.com/LudensZhang.png" alt="Haohong Zhang" crossorigin="anonymous">
     </div>
     <div>
       <h1>Haohong Zhang</h1>
@@ -372,7 +346,7 @@
 
   <section class="reveal" id="about">
     <h2>About</h2>
-    <div class="glass pad">
+    <div class="card pad">
       <p>
         I am a direct-track Ph.D. student in bioinformatics and computational
         biology at Huazhong University of Science and Technology (HUST), working
@@ -391,16 +365,16 @@
       </div>
     </div>
     <div class="stats">
-      <div class="stat glass"><b>20+</b><span>Publications</span></div>
-      <div class="stat glass"><b>169</b><span>Citations</span></div>
-      <div class="stat glass"><b>7</b><span>h-index</span></div>
-      <div class="stat glass"><b>6</b><span>i10-index</span></div>
+      <div class="stat card"><b>20+</b><span>Publications</span></div>
+      <div class="stat card"><b>169</b><span>Citations</span></div>
+      <div class="stat card"><b>7</b><span>h-index</span></div>
+      <div class="stat card"><b>6</b><span>i10-index</span></div>
     </div>
   </section>
 
   <section class="reveal" id="education">
     <h2>Education</h2>
-    <div class="glass pad">
+    <div class="card pad">
       <div class="timeline">
         <div class="tl-item">
           <span class="tl-date">2023 — Present</span>
@@ -419,30 +393,48 @@
   <section class="reveal" id="research">
     <h2>Research Directions</h2>
     <div class="research-grid">
-      <div class="research-card glass">
+      <div class="research-card card">
         <div class="icon">
-          <svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7zm-2 17a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-1h-4v1z"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="6" y="6" width="12" height="12" rx="2.5"/>
+            <path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/>
+            <circle cx="12" cy="12" r="2.4"/>
+            <path d="M12 9.6V8.2M12 15.8v-1.4M9.6 12H8.2M15.8 12h-1.4" stroke-width="1.3"/>
+          </svg>
         </div>
         <h4>Microbiome Foundation Models</h4>
         <p>Large-scale pretrained and generative language models (MGM) for interpretable, general-purpose microbiome data analysis across diverse contexts.</p>
       </div>
-      <div class="research-card glass">
+      <div class="research-card card">
         <div class="icon">
-          <svg viewBox="0 0 24 24"><path d="M3 13h4l2-7 4 14 2.5-9 1.5 2H21v-2h-3l-3-4-4 12-2.5-9L7 11H3v2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2.5 12h3.2l2.4-6.5 4.2 13 2.4-6.5h6.8"/>
+            <circle cx="2.5" cy="12" r="1.1" fill="currentColor" stroke="none"/>
+            <circle cx="21.5" cy="12" r="1.1" fill="currentColor" stroke="none"/>
+          </svg>
         </div>
         <h4>Microbial Community Dynamics</h4>
         <p>Temporal-aware machine learning and digital-twin frameworks for personalized prediction of microbiome trajectories and human life-stage tracing.</p>
       </div>
-      <div class="research-card glass">
+      <div class="research-card card">
         <div class="icon">
-          <svg viewBox="0 0 24 24"><path d="M9.5 3 7 8l5 13 1-4.2L9.5 3zm5 0L12 8.6 13.6 14 17 3h-2.5zM5 10l-4 2 6 3 1.2-2L5 10zm14 0-3.2 3 1.2 2 6-3-4-2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 2.8c0 5.2 8 5.7 8 9.2s-8 4-8 9.2"/>
+            <path d="M16 2.8c0 5.2-8 5.7-8 9.2s8 4 8 9.2"/>
+            <path d="M9.4 6.2h5.2M9.4 17.8h5.2M10.6 12h2.8" stroke-width="1.3"/>
+          </svg>
         </div>
         <h4>Functional Mining of Microbial Genomes</h4>
         <p>Context-aware protein language models for deciphering biosynthetic gene clusters and discovering antimicrobial peptides from extreme environments.</p>
       </div>
-      <div class="research-card glass">
+      <div class="research-card card">
         <div class="icon">
-          <svg viewBox="0 0 24 24"><path d="M12 3 2 8l10 5 8-4v5h2V8L12 3zm-6 9.5V17c0 1.66 2.69 3 6 3s6-1.34 6-3v-4.5l-6 3-6-3z"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="5.5" cy="6" r="2.4"/>
+            <circle cx="18.5" cy="6" r="2.4"/>
+            <circle cx="12" cy="18" r="2.4"/>
+            <path d="M7.6 7.3 10.3 16M16.4 7.3 13.7 16M7.9 6h8.2"/>
+          </svg>
         </div>
         <h4>Transfer Learning for Microbiome Analysis</h4>
         <p>Learning and transferring knowledge across cohorts and regions for robust microbiome-based classification and prediction.</p>
@@ -455,7 +447,7 @@
 
     <h3 class="year">2026</h3>
     <ul class="pubs">
-      <li class="glass">
+      <li class="card">
         <div class="pub-title">MGM as a Large-Scale Pretrained Foundation Model for Microbiome Analyses in Diverse Contexts<span class="chip">First author</span></div>
         <div class="pub-meta"><span class="me">H Zhang</span>, Y Zhang, Z Kang, J Xiong, R Yang, K Ning · <span class="venue">Advanced Science</span> 13(24), e13333</div>
       </li>
@@ -463,51 +455,51 @@
 
     <h3 class="year">2025</h3>
     <ul class="pubs">
-      <li class="glass">
+      <li class="card">
         <div class="pub-title">Towards a generative paradigm for large-scale microbiome analysis by generative language model<span class="chip">First author</span></div>
         <div class="pub-meta"><span class="me">H Zhang</span>, Z Kang, Y Zhang, R Yang, K Ning · <span class="venue">bioRxiv</span>, 2025.01.15.633278</div>
       </li>
-      <li class="glass">
+      <li class="card">
         <div class="pub-title">Deciphering the biosynthetic potential of microbial genomes using a BGC language processing neural network model</div>
         <div class="pub-meta">Q Lai, S Yao, Y Zha, <span class="me">H Zhang</span>, et al. · <span class="venue">Nucleic Acids Research</span> 53(7), gkaf305</div>
       </li>
-      <li class="glass">
+      <li class="card">
         <div class="pub-title">Techniques for learning and transferring knowledge for microbiome-based classification and prediction: review and assessment</div>
         <div class="pub-meta">J Han, <span class="me">H Zhang</span>, K Ning · <span class="venue">Briefings in Bioinformatics</span> 26(1), bbaf015</div>
       </li>
-      <li class="glass">
+      <li class="card">
         <div class="pub-title">A temporal-aware machine learning framework enables microbial community dynamics prediction with personalized precision</div>
         <div class="pub-meta">Y Zhang, K Zhou, X Chen, <span class="me">H Zhang</span>, J Han, K Ning · <span class="venue">Microbiome</span> 13(1), 261</div>
       </li>
-      <li class="glass">
+      <li class="card">
         <div class="pub-title">Microprophet: A digital twin framework for predicting microbial community dynamics with personalized precision</div>
         <div class="pub-meta">Y Zhang, K Zhou, X Chen, <span class="me">H Zhang</span>, J Han, K Ning · <span class="venue">bioRxiv</span>, 2025.05.08.652793</div>
       </li>
-      <li class="glass">
+      <li class="card">
         <div class="pub-title">Intra-tumor microbiome-based tumor survival indices predict immune interaction and drug sensitivity on pan-cancer scale</div>
         <div class="pub-meta">Y Gao, <span class="me">H Zhang</span>, D Chu, K Ning · <span class="venue">mSystems</span> 10(7), e00312-25</div>
       </li>
-      <li class="glass">
+      <li class="card">
         <div class="pub-title">Deciphering Biosynthetic Gene Clusters with a Context-Aware Protein Language Model</div>
         <div class="pub-meta">Z Kang, <span class="me">H Zhang</span>, C Liang, R Yang, Y Ye, H Bai, Y Zhang, K Ning · <span class="venue">bioRxiv</span>, 2025.04.29.651206</div>
       </li>
-      <li class="glass">
+      <li class="card">
         <div class="pub-title">AI-driven discovery and optimization of antimicrobial peptides from extreme environments on global scale</div>
         <div class="pub-meta">Z Kang, <span class="me">H Zhang</span>, Q Zhou, J Liu, K Zhou, P Chen, BF Liu, K Ning · <span class="venue">bioRxiv</span>, 2025.11.13.688364</div>
       </li>
-      <li class="glass">
+      <li class="card">
         <div class="pub-title">Discovery and optimization of antimicrobial peptides from extreme environments on global scale</div>
         <div class="pub-meta">Z Kang, <span class="me">H Zhang</span>, K Ning · <span class="venue">Briefings in Bioinformatics</span> 26(Suppl 1), i21</div>
       </li>
-      <li class="glass">
+      <li class="card">
         <div class="pub-title">Potential biases and limitations in inferring the historic range of Yangtze finless porpoises from classic poems</div>
         <div class="pub-meta">B Wang, Y Xia, <span class="me">H Zhang</span>, H Zhang, K Ning · <span class="venue">Current Biology</span> 35(23), R1138–R1140</div>
       </li>
-      <li class="glass">
+      <li class="card">
         <div class="pub-title">Microbial resources and interactions across three-dimensional space for a freshwater ecosystem</div>
         <div class="pub-meta">D Chu, <span class="me">H Zhang</span>, Z Wang, K Ning · <span class="venue">Science of the Total Environment</span> 980, 179522</div>
       </li>
-      <li class="glass">
+      <li class="card">
         <div class="pub-title">Transfer learning identifies bacterial signatures for cross-regional diagnosis of type 2 diabetes and enable stage-sensitive dietary fiber intervention</div>
         <div class="pub-meta">Q Zhang, N Wang, F Zhang, B Chen, Y Wang, Z Wang, C Zhao, C Jin, <span class="me">H Zhang</span>, et al. · <span class="venue">iMetaOmics</span> 2(2), e70021</div>
       </li>
@@ -515,11 +507,11 @@
 
     <h3 class="year">2024</h3>
     <ul class="pubs">
-      <li class="glass">
+      <li class="card">
         <div class="pub-title">Deep learning enabled integration of tumor microenvironment microbial profiles and host gene expressions for interpretable survival subtyping in diverse types of cancers<span class="chip">First author</span></div>
         <div class="pub-meta"><span class="me">H Zhang</span>, X Xiong, M Cheng, L Ji, K Ning · <span class="venue">mSystems</span> 9(12), e01395-24</div>
       </li>
-      <li class="glass">
+      <li class="card">
         <div class="pub-title">Highly accurate diagnosis of pancreatic cancer by integrative modeling using gut microbiome and exposome data</div>
         <div class="pub-meta">Y Zhang, <span class="me">H Zhang</span>, B Liu, K Ning · <span class="venue">iScience</span> 27(3)</div>
       </li>
@@ -527,23 +519,23 @@
 
     <h3 class="year">2023</h3>
     <ul class="pubs">
-      <li class="glass">
+      <li class="card">
         <div class="pub-title">Tracing human life trajectory using gut microbial communities by context-aware deep learning<span class="chip">First author</span></div>
         <div class="pub-meta"><span class="me">H Zhang</span>, H Chong, Q Yu, Y Zha, M Cheng, K Ning · <span class="venue">Briefings in Bioinformatics</span> 24(1), bbac629</div>
       </li>
-      <li class="glass">
+      <li class="card">
         <div class="pub-title">Artificial intelligence-enabled microbiome-based diagnosis models for a broad spectrum of cancer types</div>
         <div class="pub-meta">W Xu, T Wang, N Wang, <span class="me">H Zhang</span>, Y Zha, L Ji, Y Chu, K Ning · <span class="venue">Briefings in Bioinformatics</span> 24(3), bbad178</div>
       </li>
-      <li class="glass">
+      <li class="card">
         <div class="pub-title">Tumor microenvironment interplay amid microbial community, host gene expression and pathological features elucidates cancer heterogeneity and prognosis risk</div>
         <div class="pub-meta">L Ji, <span class="me">H Zhang</span>, G Tian, S Xi, Y Chu, Y Zhang, J Liu, K Ning, J Yang · <span class="venue">The Innovation Life</span> 1(2), 100028</div>
       </li>
-      <li class="glass">
+      <li class="card">
         <div class="pub-title">Integration of gut microbiome and exposome data through artificial intelligence enables accurate diagnosis of pancreatic cancer with high fidelity (IDDF2023-ABS-0078)</div>
         <div class="pub-meta">Y Zhang, <span class="me">H Zhang</span>, B Liu, K Ning · <span class="venue">Gut</span> 72(Suppl 1), A74–A75</div>
       </li>
-      <li class="glass">
+      <li class="card">
         <div class="pub-title">Utilizing tumor microenvironment microbial profiles and host gene expressions for reliable survival subtyping in liver hepatocellular carcinoma (IDDF2023-ABS-0080)<span class="chip">First author</span></div>
         <div class="pub-meta"><span class="me">H Zhang</span>, K Ning · <span class="venue">Gut</span> 72(Suppl 1), A151–A153</div>
       </li>
@@ -557,44 +549,44 @@
   <section class="reveal" id="projects">
     <h2>Projects</h2>
     <div class="proj-grid">
-      <a class="proj glass" href="https://github.com/LudensZhang/MGM2" target="_blank" rel="noopener">
+      <a class="proj card" href="https://github.com/LudensZhang/MGM2" target="_blank" rel="noopener">
         <div class="proj-name">
           <svg viewBox="0 0 24 24"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55 0-.27-.01-1.17-.02-2.12-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.69 1.25 3.35.96.1-.75.4-1.25.72-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.38-5.25 5.67.41.35.77 1.05.77 2.12 0 1.53-.01 2.76-.01 3.14 0 .3.2.67.8.55A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
           MGM2
         </div>
         <div class="proj-desc">MGM (Microbial General Model) as a large-scale pretrained language model for interpretable microbiome data analysis.</div>
       </a>
-      <a class="proj glass" href="https://github.com/LudensZhang/MGM" target="_blank" rel="noopener">
+      <a class="proj card" href="https://github.com/LudensZhang/MGM" target="_blank" rel="noopener">
         <div class="proj-name">
           <svg viewBox="0 0 24 24"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55 0-.27-.01-1.17-.02-2.12-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.69 1.25 3.35.96.1-.75.4-1.25.72-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.38-5.25 5.67.41.35.77 1.05.77 2.12 0 1.53-.01 2.76-.01 3.14 0 .3.2.67.8.55A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
           MGM
         </div>
         <div class="proj-desc">Pretrained foundation model for microbiome analyses in diverse contexts.</div>
       </a>
-      <a class="proj glass" href="https://github.com/LudensZhang/MicroVQVAE" target="_blank" rel="noopener">
+      <a class="proj card" href="https://github.com/LudensZhang/MicroVQVAE" target="_blank" rel="noopener">
         <div class="proj-name">
           <svg viewBox="0 0 24 24"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55 0-.27-.01-1.17-.02-2.12-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.69 1.25 3.35.96.1-.75.4-1.25.72-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.38-5.25 5.67.41.35.77 1.05.77 2.12 0 1.53-.01 2.76-.01 3.14 0 .3.2.67.8.55A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
           MicroVQVAE
         </div>
         <div class="proj-desc">Generative modeling for microbiome data with VQ-VAE.</div>
       </a>
-      <a class="proj glass" href="https://github.com/LudensZhang/EXPERT-lightning" target="_blank" rel="noopener">
+      <a class="proj card" href="https://github.com/LudensZhang/EXPERT-lightning" target="_blank" rel="noopener">
         <div class="proj-name">
           <svg viewBox="0 0 24 24"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55 0-.27-.01-1.17-.02-2.12-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.69 1.25 3.35.96.1-.75.4-1.25.72-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.38-5.25 5.67.41.35.77 1.05.77 2.12 0 1.53-.01 2.76-.01 3.14 0 .3.2.67.8.55A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
           EXPERT-lightning
         </div>
         <div class="proj-desc">Transfer learning for microbiome-based classification and prediction.</div>
       </a>
-      <a class="proj glass" href="https://github.com/LudensZhang/DeepMicroCancer" target="_blank" rel="noopener">
+      <a class="proj card" href="https://github.com/LudensZhang/DeepMicroCancer" target="_blank" rel="noopener">
         <div class="proj-name">
           <svg viewBox="0 0 24 24"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55 0-.27-.01-1.17-.02-2.12-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.69 1.25 3.35.96.1-.75.4-1.25.72-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.38-5.25 5.67.41.35.77 1.05.77 2.12 0 1.53-.01 2.76-.01 3.14 0 .3.2.67.8.55A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
           DeepMicroCancer
         </div>
         <div class="proj-desc">AI-enabled microbiome-based diagnosis models for a broad spectrum of cancer types.</div>
       </a>
-      <a class="proj glass" href="https://github.com/LudensZhang/ASD-cancer" target="_blank" rel="noopener">
+      <a class="proj card" href="https://github.com/LudensZhang/ASD-cancer" target="_blank" rel="noopener">
         <div class="proj-name">
-          <svg viewBox="0 0 24 24"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55 0-.27-.01-1.17-.02-2.12-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.69 1.25 3.35.96.1-.75.4-1.25.72-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.38-5.25 5.67.41.35.77 1.05.77 2.12 0 1.53-.01 2.76-.01 3.14 0 .3.2.67.8.55A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55 0-.27-.01-1.17-.02-2.12-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.69 1.25 3.35.96.1-.75.4-1.25.72-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.38-5.25 5.67.41.35.77 1.05.77 2.12 0 1.53-.01 2.76-.01 3.14 0 .3.2.67.8.55A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
           ASD-cancer
         </div>
         <div class="proj-desc">Interpretable cancer survival subtyping from tumor microenvironment microbial profiles and host gene expressions.</div>
@@ -608,11 +600,36 @@
 
 </main>
 
-<script>
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
-  }, { threshold: 0.08 });
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+<script src="assets/html2canvas.min.js" defer></script>
+<script src="assets/liquidGL.js" defer></script>
+<script defer>
+  document.addEventListener("DOMContentLoaded", () => {
+    // scroll-reveal (cheap: transform/opacity only)
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    // real liquid-glass refraction on the floating nav pill
+    if (window.liquidGL) {
+      try {
+        liquidGL({
+          snapshot: "body",
+          target: "#glassNav",
+          resolution: 1.5,
+          refraction: 0.014,
+          bevelDepth: 0.1,
+          bevelWidth: 0.18,
+          frost: 0,
+          shadow: true,
+          specular: true,
+          reveal: "fade",
+        });
+      } catch (e) {
+        console.warn("liquidGL unavailable, using CSS fallback.", e);
+      }
+    }
+  });
 </script>
 
 </body>

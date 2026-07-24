@@ -3,134 +3,283 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Haohong Zhang</title>
+<title>Haohong Zhang — Bioinformatics & Microbiome AI</title>
 <meta name="description" content="Haohong Zhang — Bioinformatics, Microbiome, Computational Biology. College of Life Science and Technology, Huazhong University of Science and Technology.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --accent: #2a6fdb;
-    --text: #1a1a1a;
-    --muted: #5c6470;
-    --border: #e4e7ec;
-    --bg: #ffffff;
+    --accent: #4f6ef7;
+    --accent-2: #0ea5a4;
+    --text: #14161c;
+    --muted: #5b6472;
+    --border: #e6e9f0;
+    --bg: #f7f8fb;
+    --card: #ffffff;
+    --hero-text: #ffffff;
+    --shadow: 0 1px 2px rgba(16,24,40,.04), 0 8px 24px -12px rgba(16,24,40,.12);
+    --shadow-hover: 0 2px 4px rgba(16,24,40,.06), 0 16px 40px -12px rgba(79,110,247,.25);
   }
   @media (prefers-color-scheme: dark) {
     :root {
-      --accent: #7aa8f0;
-      --text: #e8e9eb;
-      --muted: #9aa1ac;
-      --border: #2c3138;
-      --bg: #16181d;
+      --accent: #8ba2ff;
+      --accent-2: #2dd4bf;
+      --text: #e9ebf1;
+      --muted: #99a2b1;
+      --border: #262c38;
+      --bg: #0e1117;
+      --card: #161b25;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px -12px rgba(0,0,0,.5);
+      --shadow-hover: 0 2px 4px rgba(0,0,0,.4), 0 16px 40px -12px rgba(79,110,247,.35);
     }
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
   body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     color: var(--text);
     background: var(--bg);
     line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
   }
-  .container { max-width: 760px; margin: 0 auto; padding: 48px 24px 64px; }
-  h1 { font-size: 2rem; letter-spacing: -0.02em; }
-  .affiliation { color: var(--muted); margin-top: 8px; font-size: 1.02rem; }
-  .links { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 10px; }
-  .links a {
-    color: var(--accent);
-    text-decoration: none;
-    border: 1px solid var(--border);
-    border-radius: 999px;
-    padding: 4px 14px;
-    font-size: 0.9rem;
-    transition: border-color .15s ease;
+  a { color: var(--accent); text-decoration: none; }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    position: relative;
+    overflow: hidden;
+    color: var(--hero-text);
+    background: linear-gradient(135deg, #1e2a78 0%, #4f6ef7 45%, #0ea5a4 100%);
   }
-  .links a:hover { border-color: var(--accent); }
-  section { margin-top: 44px; }
-  h2 {
-    font-size: 1.2rem;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--muted);
-    border-bottom: 1px solid var(--border);
-    padding-bottom: 8px;
-    margin-bottom: 18px;
-  }
-  p.about { font-size: 1.02rem; }
-  .tags { display: flex; flex-wrap: wrap; gap: 8px; }
-  .tags span {
-    background: transparent;
-    border: 1px solid var(--border);
-    color: var(--muted);
-    border-radius: 6px;
-    padding: 3px 12px;
-    font-size: 0.88rem;
-  }
-  ul.pubs { list-style: none; }
-  ul.pubs li { margin-bottom: 18px; padding-left: 20px; position: relative; }
-  ul.pubs li::before {
+  .hero::before {
     content: "";
-    position: absolute; left: 0; top: 0.62em;
-    width: 7px; height: 7px; border-radius: 50%;
-    background: var(--accent);
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(600px 300px at 85% 10%, rgba(255,255,255,.18), transparent 60%),
+      radial-gradient(500px 260px at 10% 90%, rgba(255,255,255,.12), transparent 60%);
+    pointer-events: none;
   }
-  .pub-title { font-weight: 600; }
-  .pub-meta { color: var(--muted); font-size: 0.92rem; margin-top: 2px; }
-  .pub-meta .venue { font-style: italic; }
-  .me { font-weight: 700; }
-  ul.projects { list-style: none; }
-  ul.projects li {
+  .hero-inner {
+    position: relative;
+    max-width: 860px; margin: 0 auto;
+    padding: 88px 24px 72px;
+    display: flex; align-items: center; gap: 40px;
+  }
+  .avatar {
+    flex-shrink: 0;
+    width: 148px; height: 148px;
+    border-radius: 50%;
+    border: 4px solid rgba(255,255,255,.55);
+    box-shadow: 0 12px 40px rgba(0,0,0,.35);
+    object-fit: cover;
+    background: #fff;
+  }
+  .hero h1 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: clamp(2rem, 5vw, 2.9rem);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    line-height: 1.15;
+  }
+  .hero .tagline {
+    margin-top: 10px;
+    font-size: 1.05rem;
+    opacity: .92;
+    max-width: 520px;
+  }
+  .hero .affil {
+    margin-top: 6px;
+    font-size: .92rem;
+    opacity: .75;
+  }
+  .hero-links { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 10px; }
+  .hero-links a {
+    display: inline-flex; align-items: center; gap: 7px;
+    color: #fff;
+    border: 1px solid rgba(255,255,255,.45);
+    background: rgba(255,255,255,.12);
+    backdrop-filter: blur(6px);
+    border-radius: 999px;
+    padding: 7px 18px;
+    font-size: .9rem; font-weight: 500;
+    transition: background .18s ease, transform .18s ease;
+  }
+  .hero-links a:hover { background: rgba(255,255,255,.28); transform: translateY(-2px); }
+  .hero-links svg { width: 15px; height: 15px; fill: currentColor; }
+  /* wave divider */
+  .hero svg.wave { display: block; width: 100%; height: 56px; margin-bottom: -1px; }
+
+  /* ---------- Layout ---------- */
+  .container { max-width: 860px; margin: 0 auto; padding: 8px 24px 72px; }
+  section { margin-top: 56px; }
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  h2 {
+    display: flex; align-items: center; gap: 12px;
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 1.5rem; font-weight: 700;
+    margin-bottom: 22px;
+  }
+  h2::before {
+    content: "";
+    width: 26px; height: 4px; border-radius: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  }
+
+  .about-card {
+    background: var(--card);
     border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 14px 18px;
-    margin-bottom: 12px;
-    transition: border-color .15s ease;
+    border-radius: 16px;
+    padding: 26px 28px;
+    box-shadow: var(--shadow);
   }
-  ul.projects li:hover { border-color: var(--accent); }
-  .proj-name a { color: var(--accent); font-weight: 600; text-decoration: none; }
-  .proj-desc { color: var(--muted); font-size: 0.92rem; margin-top: 4px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+  .tags span {
+    font-size: .82rem; font-weight: 500;
+    color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 10%, transparent);
+    border: 1px solid color-mix(in srgb, var(--accent) 28%, transparent);
+    border-radius: 999px;
+    padding: 4px 13px;
+  }
+
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 18px; }
+  .stat {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px;
+    text-align: center;
+    box-shadow: var(--shadow);
+  }
+  .stat b {
+    display: block;
+    font-size: 1.7rem; font-weight: 800;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .stat span { color: var(--muted); font-size: .82rem; font-weight: 500; letter-spacing: .03em; }
+
+  /* ---------- Publications ---------- */
+  ul.pubs { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+  ul.pubs li {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px 22px;
+    box-shadow: var(--shadow);
+    transition: transform .18s ease, box-shadow .18s ease;
+  }
+  ul.pubs li:hover { transform: translateY(-3px); box-shadow: var(--shadow-hover); }
+  .pub-title { font-weight: 600; font-size: .99rem; line-height: 1.5; }
+  .pub-meta { color: var(--muted); font-size: .87rem; margin-top: 6px; }
+  .pub-meta .venue { font-style: italic; color: var(--text); }
+  .me { font-weight: 700; color: var(--accent); }
+  .chip {
+    display: inline-block;
+    font-size: .72rem; font-weight: 600;
+    color: var(--accent-2);
+    border: 1px solid color-mix(in srgb, var(--accent-2) 40%, transparent);
+    border-radius: 6px;
+    padding: 1px 8px;
+    margin-left: 8px;
+    vertical-align: 2px;
+  }
+  .more-link { margin-top: 16px; font-size: .92rem; font-weight: 500; }
+
+  /* ---------- Projects ---------- */
+  .proj-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .proj {
+    display: block;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px 22px;
+    box-shadow: var(--shadow);
+    transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    color: var(--text);
+  }
+  .proj:hover { transform: translateY(-3px); box-shadow: var(--shadow-hover); border-color: var(--accent); }
+  .proj-name {
+    display: flex; align-items: center; gap: 8px;
+    font-weight: 700; color: var(--accent); font-size: 1rem;
+  }
+  .proj-name svg { width: 16px; height: 16px; fill: currentColor; flex-shrink: 0; }
+  .proj-desc { color: var(--muted); font-size: .87rem; margin-top: 6px; }
+
   footer {
-    margin-top: 56px;
-    padding-top: 20px;
+    margin-top: 64px;
+    padding-top: 24px;
     border-top: 1px solid var(--border);
     color: var(--muted);
-    font-size: 0.85rem;
+    font-size: .84rem;
+    text-align: center;
   }
-  .stats { display: flex; gap: 32px; margin-top: 14px; }
-  .stat b { font-size: 1.4rem; display: block; }
-  .stat span { color: var(--muted); font-size: 0.85rem; }
+
+  @media (max-width: 640px) {
+    .hero-inner { flex-direction: column; text-align: center; padding: 64px 24px 56px; gap: 22px; }
+    .hero-links { justify-content: center; }
+    .proj-grid { grid-template-columns: 1fr; }
+    .stats { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .stat { padding: 12px 6px; }
+    .stat b { font-size: 1.35rem; }
+  }
 </style>
 </head>
 <body>
-<div class="container">
 
-  <header>
-    <h1>Haohong Zhang</h1>
-    <p class="affiliation">
-      College of Life Science and Technology,<br>
-      Huazhong University of Science and Technology, Wuhan, China
-    </p>
-    <div class="links">
-      <a href="https://scholar.google.com/citations?user=e12kCmAAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
-      <a href="https://github.com/LudensZhang" target="_blank" rel="noopener">GitHub</a>
-      <a href="https://x.com/ludens_zhang" target="_blank" rel="noopener">X (Twitter)</a>
+<header class="hero">
+  <div class="hero-inner">
+    <img class="avatar" src="https://github.com/LudensZhang.png" alt="Haohong Zhang">
+    <div>
+      <h1>Haohong Zhang</h1>
+      <p class="tagline">Building deep learning &amp; foundation models to decode the microbiome — from cancer diagnosis to microbial community dynamics.</p>
+      <p class="affil">College of Life Science and Technology, Huazhong University of Science and Technology · Wuhan, China</p>
+      <div class="hero-links">
+        <a href="https://scholar.google.com/citations?user=e12kCmAAAAAJ&hl=en" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M12 3 1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z"/></svg>
+          Google Scholar
+        </a>
+        <a href="https://github.com/LudensZhang" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55 0-.27-.01-1.17-.02-2.12-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.69 1.25 3.35.96.1-.75.4-1.25.72-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.38-5.25 5.67.41.35.77 1.05.77 2.12 0 1.53-.01 2.76-.01 3.14 0 .3.2.67.8.55A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
+          GitHub
+        </a>
+        <a href="https://x.com/ludens_zhang" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M18.9 2.1h3.68l-8.04 9.19L24 23.9h-7.41l-5.8-7.58-6.64 7.58H.47l8.6-9.83L0 2.1h7.59l5.24 6.93L18.9 2.1zm-1.29 19.6h2.04L6.49 4.16H4.3l13.31 17.54z"/></svg>
+          @ludens_zhang
+        </a>
+      </div>
     </div>
-  </header>
+  </div>
+  <svg class="wave" viewBox="0 0 1440 56" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0,32 C240,56 480,8 720,24 C960,40 1200,56 1440,20 L1440,56 L0,56 Z" fill="var(--bg)"></path>
+  </svg>
+</header>
 
-  <section>
+<main class="container">
+
+  <section class="reveal">
     <h2>About</h2>
-    <p class="about">
-      I am a researcher in bioinformatics and computational biology at Huazhong
-      University of Science and Technology (HUST), working with Prof. Kang Ning's
-      group. My research focuses on developing deep learning and large-scale
-      pretrained (foundation) models for microbiome data analysis — including
-      microbial community dynamics, cancer diagnosis and prognosis from
-      microbiome profiles, biosynthetic gene cluster mining, and antimicrobial
-      peptide discovery.
-    </p>
-    <div class="tags" style="margin-top:16px">
-      <span>Bioinformatics</span>
-      <span>Microbiome</span>
-      <span>Computational Biology</span>
-      <span>Deep Learning</span>
-      <span>Foundation Models</span>
+    <div class="about-card">
+      <p>
+        I am a researcher in bioinformatics and computational biology at Huazhong
+        University of Science and Technology (HUST), working in Prof. Kang Ning's
+        group. My research focuses on developing deep learning and large-scale
+        pretrained foundation models for microbiome analysis — including microbial
+        community dynamics, cancer diagnosis and prognosis from microbiome profiles,
+        biosynthetic gene cluster mining, and antimicrobial peptide discovery.
+      </p>
+      <div class="tags">
+        <span>Bioinformatics</span>
+        <span>Microbiome</span>
+        <span>Computational Biology</span>
+        <span>Deep Learning</span>
+        <span>Foundation Models</span>
+      </div>
     </div>
     <div class="stats">
       <div class="stat"><b>169</b><span>Citations</span></div>
@@ -139,82 +288,107 @@
     </div>
   </section>
 
-  <section>
+  <section class="reveal">
     <h2>Selected Publications</h2>
     <ul class="pubs">
       <li>
-        <div class="pub-title">MGM as a Large-Scale Pretrained Foundation Model for Microbiome Analyses in Diverse Contexts</div>
-        <div class="pub-meta"><span class="me">H Zhang</span>, Y Zhang, Z Kang, J Xiong, R Yang, K Ning. <span class="venue">Advanced Science</span>, 2026</div>
+        <div class="pub-title">MGM as a Large-Scale Pretrained Foundation Model for Microbiome Analyses in Diverse Contexts<span class="chip">First author</span></div>
+        <div class="pub-meta"><span class="me">H Zhang</span>, Y Zhang, Z Kang, J Xiong, R Yang, K Ning · <span class="venue">Advanced Science</span>, 2026</div>
       </li>
       <li>
-        <div class="pub-title">Tracing human life trajectory using gut microbial communities by context-aware deep learning</div>
-        <div class="pub-meta"><span class="me">H Zhang</span>, H Chong, Q Yu, Y Zha, M Cheng, K Ning. <span class="venue">Briefings in Bioinformatics</span>, 2023</div>
+        <div class="pub-title">Tracing human life trajectory using gut microbial communities by context-aware deep learning<span class="chip">First author</span></div>
+        <div class="pub-meta"><span class="me">H Zhang</span>, H Chong, Q Yu, Y Zha, M Cheng, K Ning · <span class="venue">Briefings in Bioinformatics</span>, 2023</div>
       </li>
       <li>
-        <div class="pub-title">Deep learning enabled integration of tumor microenvironment microbial profiles and host gene expressions for interpretable survival subtyping in diverse types of cancers</div>
-        <div class="pub-meta"><span class="me">H Zhang</span>, X Xiong, M Cheng, L Ji, K Ning. <span class="venue">mSystems</span>, 2024</div>
+        <div class="pub-title">Deep learning enabled integration of tumor microenvironment microbial profiles and host gene expressions for interpretable survival subtyping in diverse types of cancers<span class="chip">First author</span></div>
+        <div class="pub-meta"><span class="me">H Zhang</span>, X Xiong, M Cheng, L Ji, K Ning · <span class="venue">mSystems</span>, 2024</div>
       </li>
       <li>
-        <div class="pub-title">Towards a generative paradigm for large-scale microbiome analysis by generative language model</div>
-        <div class="pub-meta"><span class="me">H Zhang</span>, Z Kang, Y Zhang, R Yang, K Ning. <span class="venue">bioRxiv</span>, 2025</div>
+        <div class="pub-title">Towards a generative paradigm for large-scale microbiome analysis by generative language model<span class="chip">First author</span></div>
+        <div class="pub-meta"><span class="me">H Zhang</span>, Z Kang, Y Zhang, R Yang, K Ning · <span class="venue">bioRxiv</span>, 2025</div>
       </li>
       <li>
         <div class="pub-title">Deciphering the biosynthetic potential of microbial genomes using a BGC language processing neural network model</div>
-        <div class="pub-meta">Q Lai, S Yao, Y Zha, <span class="me">H Zhang</span>, et al. <span class="venue">Nucleic Acids Research</span>, 2025</div>
+        <div class="pub-meta">Q Lai, S Yao, Y Zha, <span class="me">H Zhang</span>, et al. · <span class="venue">Nucleic Acids Research</span>, 2025</div>
       </li>
       <li>
         <div class="pub-title">Artificial intelligence-enabled microbiome-based diagnosis models for a broad spectrum of cancer types</div>
-        <div class="pub-meta">W Xu, T Wang, N Wang, <span class="me">H Zhang</span>, et al. <span class="venue">Briefings in Bioinformatics</span>, 2023</div>
+        <div class="pub-meta">W Xu, T Wang, N Wang, <span class="me">H Zhang</span>, et al. · <span class="venue">Briefings in Bioinformatics</span>, 2023</div>
       </li>
       <li>
         <div class="pub-title">A temporal-aware machine learning framework enables microbial community dynamics prediction with personalized precision</div>
-        <div class="pub-meta">Y Zhang, K Zhou, X Chen, <span class="me">H Zhang</span>, J Han, K Ning. <span class="venue">Microbiome</span>, 2025</div>
+        <div class="pub-meta">Y Zhang, K Zhou, X Chen, <span class="me">H Zhang</span>, J Han, K Ning · <span class="venue">Microbiome</span>, 2025</div>
       </li>
       <li>
         <div class="pub-title">Highly accurate diagnosis of pancreatic cancer by integrative modeling using gut microbiome and exposome data</div>
-        <div class="pub-meta">Y Zhang, <span class="me">H Zhang</span>, B Liu, K Ning. <span class="venue">iScience</span>, 2024</div>
+        <div class="pub-meta">Y Zhang, <span class="me">H Zhang</span>, B Liu, K Ning · <span class="venue">iScience</span>, 2024</div>
       </li>
     </ul>
-    <p class="pub-meta" style="margin-top:4px">
-      Full list on
-      <a href="https://scholar.google.com/citations?user=e12kCmAAAAAJ&hl=en" target="_blank" rel="noopener" style="color:var(--accent)">Google Scholar</a>.
+    <p class="more-link">
+      → Full list on <a href="https://scholar.google.com/citations?user=e12kCmAAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
     </p>
   </section>
 
-  <section>
+  <section class="reveal">
     <h2>Projects</h2>
-    <ul class="projects">
-      <li>
-        <div class="proj-name"><a href="https://github.com/LudensZhang/MGM2" target="_blank" rel="noopener">MGM2</a></div>
+    <div class="proj-grid">
+      <a class="proj" href="https://github.com/LudensZhang/MGM2" target="_blank" rel="noopener">
+        <div class="proj-name">
+          <svg viewBox="0 0 24 24"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55 0-.27-.01-1.17-.02-2.12-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.69 1.25 3.35.96.1-.75.4-1.25.72-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.38-5.25 5.67.41.35.77 1.05.77 2.12 0 1.53-.01 2.76-.01 3.14 0 .3.2.67.8.55A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
+          MGM2
+        </div>
         <div class="proj-desc">MGM (Microbial General Model) as a large-scale pretrained language model for interpretable microbiome data analysis.</div>
-      </li>
-      <li>
-        <div class="proj-name"><a href="https://github.com/LudensZhang/MGM" target="_blank" rel="noopener">MGM</a></div>
+      </a>
+      <a class="proj" href="https://github.com/LudensZhang/MGM" target="_blank" rel="noopener">
+        <div class="proj-name">
+          <svg viewBox="0 0 24 24"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55 0-.27-.01-1.17-.02-2.12-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.69 1.25 3.35.96.1-.75.4-1.25.72-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.38-5.25 5.67.41.35.77 1.05.77 2.12 0 1.53-.01 2.76-.01 3.14 0 .3.2.67.8.55A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
+          MGM
+        </div>
         <div class="proj-desc">Pretrained foundation model for microbiome analyses in diverse contexts.</div>
-      </li>
-      <li>
-        <div class="proj-name"><a href="https://github.com/LudensZhang/MicroVQVAE" target="_blank" rel="noopener">MicroVQVAE</a></div>
+      </a>
+      <a class="proj" href="https://github.com/LudensZhang/MicroVQVAE" target="_blank" rel="noopener">
+        <div class="proj-name">
+          <svg viewBox="0 0 24 24"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55 0-.27-.01-1.17-.02-2.12-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.69 1.25 3.35.96.1-.75.4-1.25.72-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.38-5.25 5.67.41.35.77 1.05.77 2.12 0 1.53-.01 2.76-.01 3.14 0 .3.2.67.8.55A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
+          MicroVQVAE
+        </div>
         <div class="proj-desc">Generative modeling for microbiome data with VQ-VAE.</div>
-      </li>
-      <li>
-        <div class="proj-name"><a href="https://github.com/LudensZhang/EXPERT-lightning" target="_blank" rel="noopener">EXPERT-lightning</a></div>
+      </a>
+      <a class="proj" href="https://github.com/LudensZhang/EXPERT-lightning" target="_blank" rel="noopener">
+        <div class="proj-name">
+          <svg viewBox="0 0 24 24"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55 0-.27-.01-1.17-.02-2.12-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.69 1.25 3.35.96.1-.75.4-1.25.72-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.38-5.25 5.67.41.35.77 1.05.77 2.12 0 1.53-.01 2.76-.01 3.14 0 .3.2.67.8.55A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
+          EXPERT-lightning
+        </div>
         <div class="proj-desc">Transfer learning for microbiome-based classification and prediction.</div>
-      </li>
-      <li>
-        <div class="proj-name"><a href="https://github.com/LudensZhang/DeepMicroCancer" target="_blank" rel="noopener">DeepMicroCancer</a></div>
+      </a>
+      <a class="proj" href="https://github.com/LudensZhang/DeepMicroCancer" target="_blank" rel="noopener">
+        <div class="proj-name">
+          <svg viewBox="0 0 24 24"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55 0-.27-.01-1.17-.02-2.12-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.69 1.25 3.35.96.1-.75.4-1.25.72-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.38-5.25 5.67.41.35.77 1.05.77 2.12 0 1.53-.01 2.76-.01 3.14 0 .3.2.67.8.55A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
+          DeepMicroCancer
+        </div>
         <div class="proj-desc">AI-enabled microbiome-based diagnosis models for a broad spectrum of cancer types.</div>
-      </li>
-      <li>
-        <div class="proj-name"><a href="https://github.com/LudensZhang/ASD-cancer" target="_blank" rel="noopener">ASD-cancer</a></div>
+      </a>
+      <a class="proj" href="https://github.com/LudensZhang/ASD-cancer" target="_blank" rel="noopener">
+        <div class="proj-name">
+          <svg viewBox="0 0 24 24"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55 0-.27-.01-1.17-.02-2.12-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.69 1.25 3.35.96.1-.75.4-1.25.72-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.38-5.25 5.67.41.35.77 1.05.77 2.12 0 1.53-.01 2.76-.01 3.14 0 .3.2.67.8.55A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
+          ASD-cancer
+        </div>
         <div class="proj-desc">Interpretable cancer survival subtyping from tumor microenvironment microbial profiles and host gene expressions.</div>
-      </li>
-    </ul>
+      </a>
+    </div>
   </section>
 
   <footer>
-    &copy; Haohong Zhang &middot; Last updated 2026 &middot; Built with plain HTML
+    © Haohong Zhang · Huazhong University of Science and Technology · Last updated July 2026
   </footer>
 
-</div>
+</main>
+
+<script>
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
 </body>
 </html>

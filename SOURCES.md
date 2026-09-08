@@ -21,3 +21,7 @@ The existing homepage is the source for the educational timeline, email, X profi
 - Removed the old citation, h-index and i10-index numbers because they are dated snapshots. Google Scholar remains linked directly.
 - Preserved the original Ph.D. timeline and contact information; did not infer a graduation date or add unverified personal details.
 - Publication titles link directly to verified DOIs where available. Remaining entries link to Scholar searches by title.
+
+## Correction — 8 September 2026
+
+Verified the [MicroVQVAE repository README](https://github.com/HUST-NingKang-Lab/MicroVQVAE). MicroVQVAE is a genome foundation model that combines PAIR-esm2 protein embeddings with vector-quantized representation learning to obtain discrete, context-aware genome tokens from ordered prokaryotic protein sequences. The public repository provides the inference pipeline. Corrected the previous inaccurate microbial-community generative-model description, changed the category to “Genome foundation model”, and updated the repository URL to the lab account.

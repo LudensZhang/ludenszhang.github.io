@@ -1,11 +1,11 @@
 # Haohong Zhang · Personal homepage
 
-A static academic website for [ludenszhang.github.io](https://ludenszhang.github.io/), designed for GitHub Pages. No build process, package installation or server-side code is required.
+An Apple-inspired static academic website for [ludenszhang.github.io](https://ludenszhang.github.io/), designed for GitHub Pages. No build process, package installation or server-side code is required.
 
 ## Files
 
 - `index.html` — profile, research, selected publications, publication archive and project links.
-- `assets/site.css` — responsive layouts, automatic dark mode and print styles.
+- `assets/site.css` — system sans-serif typography, centered hero, translucent navigation, rounded panels, responsive layouts, automatic dark mode, reduced-motion support and print styles.
 - `assets/site.js` — optional active navigation and avatar fallback. All content, navigation and the publication archive work without JavaScript.
 - `assets/favicon.svg` — site icon.
 - `.nojekyll` — serve the repository as static files.

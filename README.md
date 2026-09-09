@@ -9,6 +9,7 @@ An Apple-inspired static academic website for [ludenszhang.github.io](https://lu
 - `assets/site.js` — optional active navigation and avatar fallback. All content, navigation and the publication archive work without JavaScript.
 - `assets/favicon.svg` — site icon.
 - `.nojekyll` — serve the repository as static files.
+- `scripts/version_assets.py` — update resource URL versions after CSS, JavaScript or icon changes.
 - `SOURCES.md` — sources and scope of the September 2026 content update.
 
 The page uses local system fonts. The GitHub avatar is optional and falls back to an initials mark if unavailable. Existing `assets/html2canvas.min.js` and `assets/liquidGL.js` have been preserved but are no longer loaded.
@@ -26,3 +27,7 @@ Push the changes to the repository's publishing branch. In **Settings → Pages*
 Edit content directly in `index.html`. Keep journal articles, preprints and conference abstracts clearly distinguished. Update the footer date when revising content. New publication entries can follow the existing `article.paper` markup. Use DOI links when verified; other preserved entries link to an exact-title Scholar search.
 
 The September 2026 redesign preserves all 20 entries and all six projects from the previous homepage, adds two verified 2026 preprints, and updates MGM2's repository link. It does not maintain a live citation counter.
+
+## Asset caching
+
+CSS, JavaScript and favicon links include a SHA-256 content version. This keeps newly deployed HTML from reusing a previous asset from the browser cache. After editing any of those files, run `python3 scripts/version_assets.py` and commit the updated `index.html` together with the changed assets. Verify before publishing with `python3 scripts/version_assets.py --check`. The script is idempotent, has no external dependencies, and does not run in the browser. The website still needs no build step to serve.

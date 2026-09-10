@@ -343,3 +343,12 @@ h1 { font-size: clamp(52px, 7vw, 88px); line-height: 1.05; letter-spacing: -.065
   .footer { padding-top: 20px; }
   .footer-main { padding-bottom: 20px; }
 }
+
+/* PDF CV entry points use the same typography, surfaces and accent tokens. */
+.cv-access { margin-top: 28px; padding: 24px; background: var(--surface); border-radius: 22px; }
+.cv-access h3 { font-size: 18px; letter-spacing: -.025em; }
+.about-content .cv-access p { font-size: 14px; margin: 6px 0 16px; }
+.cv-format { color: var(--muted); font-size: 12px; font-weight: 400; white-space: nowrap; }
+.cv-variants { display: flex; flex-wrap: wrap; gap: 12px 22px; margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--line); }
+.cv-variants a { color: var(--accent); font-size: 13px; }
+.cv-variants a:hover { text-decoration: underline; text-underline-offset: 4px; }

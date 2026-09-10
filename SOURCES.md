@@ -40,3 +40,7 @@ Read the public README of each project before designing the six symbols. Followi
 | [ASD-cancer](https://github.com/HUST-NingKang-Lab/ASD-cancer) | Two input modalities meet at an encoding bottleneck and separate into subtypes, reflecting autoencoder-based multi-omics survival subtyping. |
 
 Updated MGM, DeepMicroCancer and ASD-cancer links to the verified lab repositories. Corrected EXPERT-lightning's broad classification/prediction description to its documented core purpose: context-aware microbial source tracking with transfer learning and biome ontology. Each project remains one linked card with a single visible “View repository” cue. Icon URLs participate in content-based asset versioning.
+
+## CV additions - 10 September 2026
+
+The new CVs include separately sourced education-program context, an Outstanding Graduate honor, a MicroVQVAE conference poster and technical skills evidenced by public code. Sources, wording decisions and scope are documented in [CV sources](docs/cv-sources.md).

@@ -13,6 +13,9 @@ ROOT = Path(__file__).resolve().parent.parent
 ASSETS = ('assets/site.css', 'assets/site.js', 'assets/favicon.svg') + tuple(
     path.relative_to(ROOT).as_posix()
     for path in sorted((ROOT / 'assets/projects').glob('*.jpg'))
+) + tuple(
+    path.relative_to(ROOT).as_posix()
+    for path in sorted((ROOT / 'assets/cv').glob('*.pdf'))
 )
 
 
@@ -21,8 +24,8 @@ def versioned_html(source):
         digest = hashlib.sha256((ROOT / asset).read_bytes()).hexdigest()[:16]
         pattern = r'((?:href|src)=")' + re.escape(asset) + r'(?:\?[^"\s]*)?(")'
         source, count = re.subn(pattern, lambda match: match[1] + asset + '?v=' + digest + match[2], source)
-        if count != 1:
-            raise ValueError(f'Expected exactly one reference to {asset}, found {count}')
+        if count < 1:
+            raise ValueError(f'Expected at least one reference to {asset}, found {count}')
     return source
 
 

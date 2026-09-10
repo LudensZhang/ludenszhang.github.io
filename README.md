@@ -32,3 +32,16 @@ The September 2026 redesign preserves all 20 entries and all six projects from t
 ## Asset caching
 
 CSS, JavaScript, favicon and project-icon links include a SHA-256 content version. This keeps newly deployed HTML from reusing a previous asset from the browser cache. After editing any of those files, run `python3 scripts/version_assets.py` and commit the updated `index.html` together with the changed assets. Verify before publishing with `python3 scripts/version_assets.py --check`. The script is idempotent, has no external dependencies, and does not run in the browser. The website still needs no build step to serve.
+
+
+## CV PDFs
+
+The hero's **View CV** link opens the general two-page English CV. About also links to academic and research/engineering variants. All three use the site's charcoal, gray and blue palette, contain selectable text and clickable links, and work as ordinary PDFs on GitHub Pages.
+
+- `assets/cv/Haohong-Zhang-CV.pdf` — general research profile.
+- `assets/cv/Haohong-Zhang-CV-Academic.pdf` — publications and education first.
+- `assets/cv/Haohong-Zhang-CV-Research-Engineer.pdf` — technical skills and engineering projects first.
+- `scripts/build_cv.py` — reproducible PDF builder; requires ReportLab.
+- `docs/cv-sources.md` — evidence for additional honors, conference activity and technical skills.
+
+After content edits, run `python3 scripts/build_cv.py`, render and review all PDF pages, then run `python3 scripts/version_assets.py`. The version script updates all occurrences of each asset, including both general-CV links.

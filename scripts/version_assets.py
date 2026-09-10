@@ -12,7 +12,7 @@ import re
 ROOT = Path(__file__).resolve().parent.parent
 ASSETS = ('assets/site.css', 'assets/site.js', 'assets/favicon.svg') + tuple(
     path.relative_to(ROOT).as_posix()
-    for path in sorted((ROOT / 'assets/projects').glob('*.svg'))
+    for path in sorted((ROOT / 'assets/projects').glob('*.jpg'))
 )
 
 

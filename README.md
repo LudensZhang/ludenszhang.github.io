@@ -8,7 +8,7 @@ An Apple-inspired static academic website for [ludenszhang.github.io](https://lu
 - `assets/site.css` — system sans-serif typography, centered hero, translucent navigation, rounded panels, responsive layouts, automatic dark mode, reduced-motion support and print styles.
 - `assets/site.js` — optional active navigation and avatar fallback. All content, navigation and the publication archive work without JavaScript.
 - `assets/favicon.svg` — site icon.
-- `assets/projects/*.svg` — six original project symbols, based on the repository functions documented in `SOURCES.md`.
+- `assets/projects/*.jpg` — six generated glass project icons, based on the repository functions documented in `SOURCES.md`. Generation prompts and processing details: `docs/project-icon-prompts.md`. The earlier SVG studies are retained but not loaded.
 - `.nojekyll` — serve the repository as static files.
 - `scripts/version_assets.py` — update resource URL versions after CSS, JavaScript or icon changes.
 - `SOURCES.md` — sources and scope of the September 2026 content update.

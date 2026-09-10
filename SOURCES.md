@@ -28,7 +28,7 @@ Verified the [MicroVQVAE repository README](https://github.com/HUST-NingKang-Lab
 
 ## Repository icons and links — 10 September 2026
 
-Read the public README of each project before designing the six original SVG symbols. They share rounded geometry, a two-pixel stroke and restrained tinted surfaces, with no Apple logo or proprietary symbol assets.
+Read the public README of each project before designing the six symbols. Following visual feedback, the initial SVG studies were replaced by generated glass sculptures with coordinated lighting, rounded silhouettes and project-specific colors. No Apple logo or proprietary symbol assets are used. Full prompts and generation details are recorded in [project-icon-prompts.md](docs/project-icon-prompts.md). These icons are conceptual illustrations of the functions below, not exact architecture diagrams.
 
 | Project / source | Symbol rationale |
 | --- | --- |

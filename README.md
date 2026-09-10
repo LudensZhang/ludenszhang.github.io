@@ -8,6 +8,7 @@ An Apple-inspired static academic website for [ludenszhang.github.io](https://lu
 - `assets/site.css` — system sans-serif typography, centered hero, translucent navigation, rounded panels, responsive layouts, automatic dark mode, reduced-motion support and print styles.
 - `assets/site.js` — optional active navigation and avatar fallback. All content, navigation and the publication archive work without JavaScript.
 - `assets/favicon.svg` — site icon.
+- `assets/projects/*.svg` — six original project symbols, based on the repository functions documented in `SOURCES.md`.
 - `.nojekyll` — serve the repository as static files.
 - `scripts/version_assets.py` — update resource URL versions after CSS, JavaScript or icon changes.
 - `SOURCES.md` — sources and scope of the September 2026 content update.
@@ -30,4 +31,4 @@ The September 2026 redesign preserves all 20 entries and all six projects from t
 
 ## Asset caching
 
-CSS, JavaScript and favicon links include a SHA-256 content version. This keeps newly deployed HTML from reusing a previous asset from the browser cache. After editing any of those files, run `python3 scripts/version_assets.py` and commit the updated `index.html` together with the changed assets. Verify before publishing with `python3 scripts/version_assets.py --check`. The script is idempotent, has no external dependencies, and does not run in the browser. The website still needs no build step to serve.
+CSS, JavaScript, favicon and project-icon links include a SHA-256 content version. This keeps newly deployed HTML from reusing a previous asset from the browser cache. After editing any of those files, run `python3 scripts/version_assets.py` and commit the updated `index.html` together with the changed assets. Verify before publishing with `python3 scripts/version_assets.py --check`. The script is idempotent, has no external dependencies, and does not run in the browser. The website still needs no build step to serve.

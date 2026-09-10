@@ -10,7 +10,10 @@ from pathlib import Path
 import re
 
 ROOT = Path(__file__).resolve().parent.parent
-ASSETS = ('assets/site.css', 'assets/site.js', 'assets/favicon.svg')
+ASSETS = ('assets/site.css', 'assets/site.js', 'assets/favicon.svg') + tuple(
+    path.relative_to(ROOT).as_posix()
+    for path in sorted((ROOT / 'assets/projects').glob('*.svg'))
+)
 
 
 def versioned_html(source):
@@ -36,7 +39,7 @@ def main():
         print('All asset versions match their file contents.')
     elif current != updated:
         page.write_text(updated, encoding='utf-8')
-        print('Updated CSS, JavaScript and icon URLs with content hashes.')
+        print('Updated stylesheet, script and icon URLs with content hashes.')
     else:
         print('Asset versions are already current.')
 

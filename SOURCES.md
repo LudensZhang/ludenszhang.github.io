@@ -25,3 +25,18 @@ The existing homepage is the source for the educational timeline, email, X profi
 ## Correction — 8 September 2026
 
 Verified the [MicroVQVAE repository README](https://github.com/HUST-NingKang-Lab/MicroVQVAE). MicroVQVAE is a genome foundation model that combines PAIR-esm2 protein embeddings with vector-quantized representation learning to obtain discrete, context-aware genome tokens from ordered prokaryotic protein sequences. The public repository provides the inference pipeline. Corrected the previous inaccurate microbial-community generative-model description, changed the category to “Genome foundation model”, and updated the repository URL to the lab account.
+
+## Repository icons and links — 10 September 2026
+
+Read the public README of each project before designing the six original SVG symbols. They share rounded geometry, a two-pixel stroke and restrained tinted surfaces, with no Apple logo or proprietary symbol assets.
+
+| Project / source | Symbol rationale |
+| --- | --- |
+| [MGM2](https://github.com/HUST-NingKang-Lab/MGM2) | Differently sized community nodes surrounding a shared representation, reflecting identity, abundance and community embeddings. |
+| [MGM](https://github.com/HUST-NingKang-Lab/MGM) | Stacked token layers for large-scale microbiome pretraining and representation learning. |
+| [MicroVQVAE](https://github.com/HUST-NingKang-Lab/MicroVQVAE) | Ordered discrete blocks connected along a sequence, representing context-aware genome tokens. |
+| [EXPERT-lightning](https://github.com/LudensZhang/EXPERT-lightning) | Multiple source nodes converging on one sample, reflecting microbial source attribution. |
+| [DeepMicroCancer](https://github.com/HUST-NingKang-Lab/DeepMicroCancer) | A magnifying lens over microbial features, representing microbiome-based cancer classification. |
+| [ASD-cancer](https://github.com/HUST-NingKang-Lab/ASD-cancer) | Two input modalities meet at an encoding bottleneck and separate into subtypes, reflecting autoencoder-based multi-omics survival subtyping. |
+
+Updated MGM, DeepMicroCancer and ASD-cancer links to the verified lab repositories. Corrected EXPERT-lightning's broad classification/prediction description to its documented core purpose: context-aware microbial source tracking with transfer learning and biome ontology. Each project remains one linked card with a single visible “View repository” cue. Icon URLs participate in content-based asset versioning.

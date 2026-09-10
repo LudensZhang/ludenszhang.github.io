@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="72" height="72" viewBox="0 0 72 72" fill="none">
+  <title>Microbiome pretraining layers</title>
+  <defs><linearGradient id="surface" x1="12" y1="0" x2="60" y2="72" gradientUnits="userSpaceOnUse"><stop stop-color="#fff"/><stop offset="1" stop-color="#e2f3f8"/></linearGradient></defs>
+  <rect x=".5" y=".5" width="71" height="71" rx="19.5" fill="url(#surface)" stroke="#147d98" stroke-opacity=".12"/>
+  <g color="#147d98" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<path d="m18 44 15 8a6 6 0 0 0 6 0l15-8M18 36l15 8a6 6 0 0 0 6 0l15-8"/>
+<path d="m20 25 13-7a6 6 0 0 1 6 0l13 7a3 3 0 0 1 0 5l-13 7a6 6 0 0 1-6 0l-13-7a3 3 0 0 1 0-5Z" fill="currentColor" fill-opacity=".08"/>
+<path d="M28 27h16" stroke-opacity=".35"/>
+<circle cx="28" cy="27" r="2" fill="currentColor" stroke="none"/><circle cx="36" cy="27" r="2" fill="currentColor" stroke="none"/><circle cx="44" cy="27" r="2" fill="currentColor" stroke="none"/>
+  </g>
+</svg>

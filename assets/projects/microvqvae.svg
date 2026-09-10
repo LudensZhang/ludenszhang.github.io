@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="72" height="72" viewBox="0 0 72 72" fill="none">
+  <title>Ordered genome tokens</title>
+  <defs><linearGradient id="surface" x1="12" y1="0" x2="60" y2="72" gradientUnits="userSpaceOnUse"><stop stop-color="#fff"/><stop offset="1" stop-color="#eee8fb"/></linearGradient></defs>
+  <rect x=".5" y=".5" width="71" height="71" rx="19.5" fill="url(#surface)" stroke="#7850bf" stroke-opacity=".12"/>
+  <g color="#7850bf" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<path d="M22 23h28a8 8 0 0 1 0 16H22a8 8 0 0 0 0 16h9" stroke-opacity=".4"/>
+<rect x="18" y="18" width="10" height="10" rx="3" fill="currentColor" fill-opacity=".16"/>
+<rect x="36" y="18" width="10" height="10" rx="3" fill="#fbf9ff"/>
+<rect x="42" y="34" width="10" height="10" rx="3" fill="currentColor" fill-opacity=".16"/>
+<rect x="24" y="34" width="10" height="10" rx="3" fill="#fbf9ff"/>
+<rect x="30" y="50" width="10" height="10" rx="3" fill="currentColor" fill-opacity=".16"/>
+  </g>
+</svg>

@@ -170,12 +170,13 @@ h1 { font-size: clamp(52px, 7vw, 88px); line-height: 1.05; letter-spacing: -.065
 .project-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
 .project { display: flex; flex-direction: column; padding: 30px; border-radius: 26px; background: var(--surface); transition: transform .3s, box-shadow .3s; }
 .project:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
-.project-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; color: var(--muted); }
-.project-top .mono { font-size: 12px; }
-.project-top > span:last-child { color: var(--accent); font-size: 17px; }
-.project h3 { font-size: 29px; letter-spacing: -.05em; line-height: 1.15; margin-top: 35px; overflow-wrap: anywhere; }
+.project-top { display: flex; align-items: center; gap: 16px; color: var(--muted); }
+.project-icon { display: block; flex-shrink: 0; width: 64px; height: 64px; }
+.project-top .mono { font-size: 12px; line-height: 1.5; max-width: 145px; }
+.project h3 { font-size: 29px; letter-spacing: -.05em; line-height: 1.15; margin-top: 25px; overflow-wrap: anywhere; }
 .project > p { color: var(--muted); font-size: 16px; line-height: 1.6; margin: 18px 0 30px; }
-.project-bottom { margin-top: auto; display: flex; justify-content: space-between; color: var(--accent); font-size: 14px; }
+.project-bottom { margin-top: auto; align-self: flex-start; color: var(--accent); font-size: 14px; }
+.project:hover .project-bottom, .project:focus-visible .project-bottom { text-decoration: underline; text-underline-offset: 4px; }
 .footer { background: var(--surface); padding-top: 80px; }
 .footer-main { display: flex; justify-content: space-between; gap: 40px; padding-bottom: 70px; }
 .footer .mono { color: var(--muted); font-size: 17px; }
@@ -205,6 +206,8 @@ h1 { font-size: clamp(52px, 7vw, 88px); line-height: 1.05; letter-spacing: -.065
   .research-grid h3 { font-size: 24px; }
   .project { padding: 25px; }
   .project h3 { font-size: 25px; }
+  .project-top { gap: 12px; }
+  .project-icon { width: 56px; height: 56px; }
 }
 @media (max-width: 800px) {
   .wrap { width: calc(100% - 48px); }
@@ -294,6 +297,7 @@ h1 { font-size: clamp(52px, 7vw, 88px); line-height: 1.05; letter-spacing: -.065
   .project-grid { grid-template-columns: 1fr; gap: 16px; }
   .project { padding: 28px; border-radius: 24px; }
   .project h3 { font-size: 30px; margin-top: 25px; }
+  .project-icon { width: 64px; height: 64px; }
   .projects { padding-top: 0; }
   .footer { padding-top: 55px; }
   .footer-main { flex-direction: column; gap: 32px; padding-bottom: 40px; }

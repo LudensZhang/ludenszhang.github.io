@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="72" height="72" viewBox="0 0 72 72" fill="none">
+  <title>Multi-omics survival subtyping</title>
+  <defs><linearGradient id="surface" x1="12" y1="0" x2="60" y2="72" gradientUnits="userSpaceOnUse"><stop stop-color="#fff"/><stop offset="1" stop-color="#e9eafb"/></linearGradient></defs>
+  <rect x=".5" y=".5" width="71" height="71" rx="19.5" fill="url(#surface)" stroke="#6064be" stroke-opacity=".12"/>
+  <g color="#6064be" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<path d="m22 22 11 11M22 50l11-11m6-6 11-11M40 36h10M39 39l11 11"/>
+<rect x="15" y="17" width="10" height="10" rx="3" fill="currentColor" fill-opacity=".12"/>
+<rect x="15" y="45" width="10" height="10" rx="3" fill="#f6f6ff"/>
+<path d="m36 29 7 7-7 7-7-7Z" fill="currentColor" fill-opacity=".12" stroke-linejoin="round"/>
+<circle cx="53" cy="22" r="3" fill="currentColor" stroke="none"/><circle cx="53" cy="36" r="3" fill="currentColor" stroke="none"/><circle cx="53" cy="50" r="3" fill="currentColor" stroke="none"/>
+  </g>
+</svg>

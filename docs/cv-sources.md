@@ -1,6 +1,6 @@
 # CV sources and editorial scope
 
-Updated 10 September 2026. Three English versions share the same factual record:
+Content verified 10 September 2026; visual design updated 16 September 2026. Three English versions share the same factual record:
 general CV, academic CV, and research/engineering CV. Each is two A4 pages.
 
 ## Sources
@@ -18,4 +18,4 @@ Skills summarize visible code use, not measured proficiency. Forked courses or r
 
 ## Rebuild and publish
 
-Run `python3 scripts/build_cv.py` in an environment with `reportlab`. The script reads publication and project text from `index.html`, embeds Arial when available (otherwise standard Helvetica), writes three linked PDFs under `assets/cv/`, and checks for page overflow. Then run `python3 scripts/version_assets.py` to refresh every PDF reference. Verify the six rendered pages after substantive edits.
+Run `python3 scripts/build_cv.py` in an environment with `reportlab`. The script reads publication and project text from `index.html`, embeds Arial and Georgia when available (otherwise standard Helvetica and Times), writes three linked PDFs under `assets/cv/`, and checks for page overflow. Then run `python3 scripts/version_assets.py` to refresh every PDF reference. Verify the six rendered pages after substantive edits.

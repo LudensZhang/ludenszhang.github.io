@@ -1,14 +1,14 @@
 # Haohong Zhang · Personal homepage
 
-An Apple-inspired static academic website for [ludenszhang.github.io](https://ludenszhang.github.io/), designed for GitHub Pages. No build process, package installation or server-side code is required.
+A Haohong Ink static academic website for [ludenszhang.github.io](https://ludenszhang.github.io/), designed for GitHub Pages. No build process, package installation or server-side code is required.
 
 ## Files
 
 - `index.html` — profile, research, selected publications, publication archive and project links.
-- `assets/site.css` — system sans-serif typography, centered hero, translucent navigation, rounded panels, responsive layouts, automatic dark mode, reduced-motion support and print styles.
+- `assets/site.css` — warm ivory and navy, Georgia headings, fine rules, editorial publication lists, responsive layouts, reduced-motion support and print styles.
 - `assets/site.js` — optional active navigation and avatar fallback. All content, navigation and the publication archive work without JavaScript.
 - `assets/favicon.svg` — site icon.
-- `assets/projects/*.jpg` — six generated glass project icons, based on the repository functions documented in `SOURCES.md`. Generation prompts and processing details: `docs/project-icon-prompts.md`. The earlier SVG studies are retained but not loaded.
+- `assets/ink/` — generated decorative network artwork and six coordinated line icons. Design decisions and provenance: `docs/haohong-ink-design.md`. Earlier glass illustrations and SVG studies remain archived under `assets/projects/`.
 - `.nojekyll` — serve the repository as static files.
 - `scripts/version_assets.py` — update resource URL versions after CSS, JavaScript or icon changes.
 - `SOURCES.md` — sources and scope of the September 2026 content update.
@@ -36,7 +36,7 @@ CSS, JavaScript, favicon and project-icon links include a SHA-256 content versio
 
 ## CV PDFs
 
-The hero's **View CV** link opens the general two-page English CV. About also links to academic and research/engineering variants. All three use the site's charcoal, gray and blue palette, contain selectable text and clickable links, and work as ordinary PDFs on GitHub Pages.
+The hero's **View CV** link opens the general two-page English CV. About also links to academic and research/engineering variants. All three use the site's warm ivory, navy and blue palette with Georgia headings, contain selectable text and clickable links, and work as ordinary PDFs on GitHub Pages.
 
 - `assets/cv/Haohong-Zhang-CV.pdf` — general research profile.
 - `assets/cv/Haohong-Zhang-CV-Academic.pdf` — publications and education first.

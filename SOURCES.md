@@ -44,3 +44,10 @@ Updated MGM, DeepMicroCancer and ASD-cancer links to the verified lab repositori
 ## CV additions - 10 September 2026
 
 The new CVs include separately sourced education-program context, an Outstanding Graduate honor, a MicroVQVAE conference poster and technical skills evidenced by public code. Sources, wording decisions and scope are documented in [CV sources](docs/cv-sources.md).
+
+## Haohong Ink visual update — 16 September 2026
+
+Rebuilt the English website and all three CVs using the owner's revised visual
+skill: warm ivory, navy, serif headings and fine line artwork. Factual content is
+unchanged. Current artwork provenance and layout decisions are recorded in
+[Haohong Ink design](docs/haohong-ink-design.md); earlier glass icons are archived.

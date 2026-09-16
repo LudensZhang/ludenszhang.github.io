@@ -10,13 +10,12 @@ from pathlib import Path
 import re
 
 ROOT = Path(__file__).resolve().parent.parent
-ASSETS = ('assets/site.css', 'assets/site.js', 'assets/favicon.svg') + tuple(
-    path.relative_to(ROOT).as_posix()
-    for path in sorted((ROOT / 'assets/projects').glob('*.jpg'))
-) + tuple(
-    path.relative_to(ROOT).as_posix()
-    for path in sorted((ROOT / 'assets/cv').glob('*.pdf'))
-)
+# Discover only assets actually referenced by the page; historical artwork may
+# remain in the repository without becoming a deployment dependency.
+ASSETS = tuple(sorted(set(re.findall(
+    r'(?:href|src)="(assets/[^"?]+)(?:\?[^"\s]*)?"',
+    (ROOT / 'index.html').read_text(encoding='utf-8')
+))))
 
 
 def versioned_html(source):

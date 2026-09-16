@@ -23,7 +23,7 @@ source = (ROOT / 'index.html').read_text()
 W, H = A4
 M = 45
 CW = W - 2 * M
-INK, MUTED, BLUE, SURFACE, LINE = '#1d1d1f', '#6e6e73', '#0066cc', '#f5f5f7', '#d2d2d7'
+INK, MUTED, BLUE, SURFACE, LINE = '#001F44', '#5A6B7A', '#314E93', '#FBF8F2', '#CBD4DD'
 FONT, BOLD = 'Helvetica', 'Helvetica-Bold'
 font_dir = Path('/System/Library/Fonts/Supplemental')
 if (font_dir / 'Arial.ttf').exists():
@@ -31,6 +31,11 @@ if (font_dir / 'Arial.ttf').exists():
     pdfmetrics.registerFont(TTFont('CVSans-Bold', str(font_dir / 'Arial Bold.ttf')))
     pdfmetrics.registerFontFamily('CVSans', normal='CVSans', bold='CVSans-Bold', italic='CVSans', boldItalic='CVSans-Bold')
     FONT, BOLD = 'CVSans', 'CVSans-Bold'
+
+HEADING = 'Times-Roman'
+if (font_dir / 'Georgia.ttf').exists():
+    pdfmetrics.registerFont(TTFont('CVSerif', str(font_dir / 'Georgia.ttf')))
+    HEADING = 'CVSerif'
 
 def clean(text):
     return re.sub(r'\s+', ' ', text.replace('↗', '').replace('—', '-').replace('–', '-').replace('’', "'")).strip()
@@ -70,8 +75,8 @@ class CV:
         self.c.setSubject('Bioinformatics, microbiome foundation models and AI for biology')
         self.label, self.page, self.y = label, 0, 0
 
-    def para(self, text, size=10, leading=14, color=INK, bold=False, gap=5, x=M, width=CW):
-        style = ParagraphStyle('cv', fontName=BOLD if bold else FONT, fontSize=size, leading=leading, textColor=HexColor(color))
+    def para(self, text, size=10, leading=14, color=INK, bold=False, gap=5, x=M, width=CW, heading=False):
+        style = ParagraphStyle('cv', fontName=HEADING if heading else (BOLD if bold else FONT), fontSize=size, leading=leading, textColor=HexColor(color))
         p = Paragraph(text, style)
         _, height = p.wrap(width, H)
         if self.y + height > H - 55:
@@ -84,22 +89,29 @@ class CV:
             self.footer()
             self.c.showPage()
         self.page += 1
-        self.y = 42
+        self.c.setFillColor(HexColor(SURFACE))
+        self.c.rect(0, 0, W, H, fill=1, stroke=0)
+        self.c.setStrokeColor(HexColor(LINE)); self.c.setLineWidth(.5)
+        self.c.line(M, H-27, W-M, H-27)
+        self.c.setStrokeColor(HexColor('#E9BA35')); self.c.setLineWidth(2)
+        self.c.line(M, H-27, M+35, H-27)
+        self.y = 43
         if first:
-            self.para('Haohong Zhang', size=34, leading=39, bold=True, gap=4)
+            self.para('Haohong Zhang', size=37, leading=43, heading=True, gap=5)
             self.para('Bioinformatics  /  Foundation models  /  AI for biology', 11, 15, BLUE, gap=10)
             self.para('Ph.D. student · Huazhong University of Science and Technology · Wuhan, China', 9, 13, MUTED, gap=4)
             self.para(link('haohongzh@gmail.com', 'mailto:haohongzh@gmail.com') + ' &nbsp; · &nbsp; ' + link('ludenszhang.github.io', 'https://ludenszhang.github.io/') + ' &nbsp; · &nbsp; ' + link('GitHub', 'https://github.com/LudensZhang') + ' &nbsp; · &nbsp; ' + link('Scholar', 'https://scholar.google.com/citations?user=e12kCmAAAAAJ&hl=en'), 9, 13, gap=3)
             self.para(link('ORCID 0000-0001-6267-4244', 'https://orcid.org/0000-0001-6267-4244'), 9, 12, gap=12)
         else:
-            self.para('Haohong Zhang', 19, 23, bold=True, gap=3)
+            self.para('Haohong Zhang', 23, 28, heading=True, gap=4)
             self.para(self.label, 10, 14, MUTED, gap=12)
 
     def section(self, text):
         self.y += 8
-        self.c.setFillColor(HexColor(BLUE))
-        self.c.roundRect(M, H-self.y-13, 3, 13, 1.5, fill=1, stroke=0)
-        self.para(text, 12.5, 17, bold=True, gap=10, x=M+12, width=CW-12)
+        rule_start = M + pdfmetrics.stringWidth(text, HEADING, 14.5) + 16
+        self.c.setStrokeColor(HexColor(LINE)); self.c.setLineWidth(.45)
+        self.c.line(rule_start, H-self.y-12, W-M, H-self.y-12)
+        self.para(text, 14.5, 19, BLUE, heading=True, gap=9)
 
     def summary(self, industry=False):
         text = ('Researcher working at the intersection of biological data and machine learning, with public code spanning transformer fine-tuning, discrete genome representations, microbial source tracking and scientific data visualization.' if industry else 'I develop foundation models and interpretable machine learning methods for microbiome research, connecting microbial communities, genome representations and multi-omics data with biological questions.')

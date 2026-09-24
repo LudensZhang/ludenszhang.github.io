@@ -23,6 +23,12 @@ Run `python3 -m http.server 8765` from the repository, then open `http://localho
 
 Push the changes to the repository's publishing branch. In **Settings → Pages**, choose **Deploy from a branch**, select that branch, and use **/ (root)**. The website is served at `https://ludenszhang.github.io/`; no GitHub Actions workflow is needed for this setup. If Pages already publishes this branch and root directory, no settings changes are needed.
 
+## Web analytics
+
+`index.html` includes the Cloudflare Web Analytics beacon for `ludenszhang.github.io`. After publishing, sign in to the [Cloudflare dashboard](https://dash.cloudflare.com/), open **Web Analytics**, and select the site to view traffic. Data starts accumulating after the beacon is deployed; earlier visits cannot be recovered. Allow a few minutes after visiting the live site for data to appear. Ad blockers or network restrictions may prevent some visits from being recorded.
+
+The beacon's site token is a public identifier intended for the HTML snippet, not a Cloudflare API credential. Dashboard access still requires your Cloudflare account. Setup reference: [Cloudflare Web Analytics](https://developers.cloudflare.com/web-analytics/get-started/).
+
 ## Updating content
 
 Edit content directly in `index.html`. Keep journal articles, preprints and conference abstracts clearly distinguished. Update the footer date when revising content. New publication entries can follow the existing `article.paper` markup. Use DOI links when verified; other preserved entries link to an exact-title Scholar search.

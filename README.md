@@ -4,11 +4,11 @@ A Haohong Ink static academic website for [ludenszhang.github.io](https://ludens
 
 ## Files
 
-- `index.html` — profile, research, selected publications, publication archive and project links.
-- `assets/site.css` — warm ivory and navy, Georgia headings, fine rules, editorial publication lists, responsive layouts, reduced-motion support and print styles.
-- `assets/site.js` — optional active navigation and avatar fallback. All content, navigation and the publication archive work without JavaScript.
+- `index.html` — hero with masthead, About, research directions, featured MGM2 v2 band, selected publications, filterable archive, project grid and footer.
+- `assets/site.css` — Haohong Ink design system: warm ivory, navy ink, Georgia display type, hairline grids, one deep-navy feature band, responsive layouts, reduced-motion, forced-colors and print styles.
+- `assets/site.js` — optional enhancements: active navigation, header reading-progress line, scroll reveals, archive filters (All / First author / Journal / Preprint / Abstract) and avatar fallback. All content, links and the archive work without JavaScript; filters stay hidden without it.
 - `assets/favicon.svg` — site icon.
-- `assets/ink/` — generated decorative network artwork and six coordinated line icons. Design decisions and provenance: `docs/haohong-ink-design.md`. Earlier glass illustrations and SVG studies remain archived under `assets/projects/`.
+- `assets/ink/` — line icons for the six projects and the earlier hero image (still used as the social preview image). The hero network and MGM2 schematic are inline SVG in `index.html`. Design decisions and provenance: `docs/haohong-ink-design.md`. Earlier glass illustrations and SVG studies remain archived under `assets/projects/`.
 - `.nojekyll` — serve the repository as static files.
 - `scripts/version_assets.py` — update resource URL versions after CSS, JavaScript or icon changes.
 - `SOURCES.md` — sources and scope of the September 2026 content update.
@@ -31,7 +31,7 @@ The beacon's site token is a public identifier intended for the HTML snippet, no
 
 ## Updating content
 
-Edit content directly in `index.html`. Keep journal articles, preprints and conference abstracts clearly distinguished. Update the footer date when revising content. New publication entries can follow the existing `article.paper` markup. Use DOI links when verified; other preserved entries link to an exact-title Scholar search.
+Edit content directly in `index.html`. Keep journal articles, preprints and conference abstracts clearly distinguished. Each `article.paper` carries `data-kind` (`journal`, `preprint` or `abstract`; reviews count as `journal`) and `data-first` (`true` when Haohong is the first-listed author) for the archive filters. Update the masthead publication count when adding entries. Update the footer date when revising content. New publication entries can follow the existing `article.paper` markup. Use DOI links when verified; other preserved entries link to an exact-title Scholar search.
 
 The September 2026 redesign preserves all 20 entries and all six projects from the previous homepage, adds two verified 2026 preprints, and updates MGM2's repository link. It does not maintain a live citation counter.
 

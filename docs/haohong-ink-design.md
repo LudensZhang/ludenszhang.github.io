@@ -46,3 +46,15 @@ Earlier glass artwork remains archived in `assets/projects/`.
 - All six PDF pages rendered and visually inspected for clipping and overflow.
 - Local asset references use content hashes, including PDFs and new artwork.
 - No external font service, build system or backend required for GitHub Pages.
+
+## Structural redesign — 13 October 2026
+
+A full rebuild of the homepage structure and stylesheet in the same Haohong Ink palette:
+
+- **Hero:** editorial cover with an oversized Georgia name, a “New · MGM2 v2” announcement, and an inline-SVG network (nodes on three orbits around a gold core). It replaces the JPEG, which showed a darker rectangle under `mix-blend-mode:multiply`. Below the hero, a masthead strip lists profile, group, focus and record.
+- **Rhythm:** numbered section labels (01–05), ink top rules on every list and grid, hairlines inside. Research uses a tinted band, and MGM2 is the page's single deep-navy band with an ivory line schematic and Georgia figures.
+- **Research:** a 2×2 grid; each direction has a line icon and tags naming related work.
+- **Publications:** five selected entries with large numerals and a gold hover rule; the remaining 20 are in a disclosure with optional filters.
+- **Code:** a shared-border 3×2 grid. **Footer:** a large serif sign-off and a ruled link list.
+- **Motion:** stroke draw-in for the hero, a dashed flow in the schematic, below-the-fold reveals and a header reading-progress line. All of it is disabled under `prefers-reduced-motion`; content never depends on JavaScript.
+- Verified at 1440 px and 375 px: no horizontal page overflow. On phones the schematic scrolls inside its card.

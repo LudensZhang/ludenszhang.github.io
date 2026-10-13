@@ -51,3 +51,14 @@ Rebuilt the English website and all three CVs using the owner's revised visual
 skill: warm ivory, navy, serif headings and fine line artwork. Factual content is
 unchanged. Current artwork provenance and layout decisions are recorded in
 [Haohong Ink design](docs/haohong-ink-design.md); earlier glass icons are archived.
+
+## MGM2 v2 and new works — 13 October 2026
+
+Checked the [MGM2 v2 bioRxiv page](https://www.biorxiv.org/content/10.64898/2026.07.20.739063v2), the [ORCID works list](https://orcid.org/0000-0001-6267-4244) and Crossref metadata.
+
+- **MGM2 v2** (posted 30 September 2026): retitled “MGM2 as a Multimodal Foundation Model for Microbial Community States and Responses”; authors H Zhang, Y Zhang, Y Qi, T Liu, L Zhao, R Yang, K Ning. The featured figures (1.8 million microbiomes; mean macro-AUROC 0.91 on later MGnify projects absent from pretraining; 68% of observed high-change taxa recovered in FMT outcome prediction) are quoted from the v2 abstract. Four released model sizes are listed on [Hugging Face](https://huggingface.co/LudensZhang/MGM2). The DOI link resolves to the latest version; the feature button links to v2 directly.
+- **Added, selected:** [Foundation Models for Microbiome Research](https://doi.org/10.1002/ggn2.70046), *Advanced Genetics* 7(3), e70046 (H Zhang, Z Kang, K Ning; review); [mHolmes](https://doi.org/10.1038/s41467-026-77510-3), *Nature Communications*, 2026 (J Han, Y Zhang, H Zhang, K Zhou, X Chen, K Ning).
+- **Added, archive:** [PaleoRigor](https://doi.org/10.64898/2026.09.30.755547), bioRxiv preprint, October 2026 (T Liu, H Zhang, Y Jia, K Ning).
+- The 2024 *mSystems* survival-subtyping article moved from Selected to the archive. Total: 25 entries, 5 selected.
+- Not added: a January 2026 Research Square preprint on postmortem microbiome forecasting, which appears to be an earlier version of mHolmes.
+- The MGM2 schematic is conceptual and is labelled as such on the page.

@@ -7,7 +7,8 @@ A Haohong Ink static academic website for [ludenszhang.github.io](https://ludens
 - `index.html` — hero with masthead, About, research directions, featured MGM2 v2 band, selected publications, filterable archive, project grid and footer.
 - `assets/site.css` — Haohong Ink design system: warm ivory, navy ink, Georgia display type, hairline grids, one deep-navy feature band, responsive layouts, reduced-motion, forced-colors and print styles.
 - `assets/site.js` — optional enhancements: active navigation, header reading-progress line, scroll reveals, archive filters (All / First author / Journal / Preprint / Abstract) and avatar fallback. All content, links and the archive work without JavaScript; filters stay hidden without it.
-- `assets/favicon.svg` — site icon.
+- `assets/favicon.svg` — site icon: the HZ logo on an ivory tile.
+- `assets/brand/` — HZ logo. `hz-logo-source.png` is the owner-supplied original. `hz-logo.svg` is a vector trace (about 3 KB) with colors snapped to ink `#001F44` and gold `#E9BA35`, used in the navigation. `hz-logo.png` is the cropped, recolored raster used in CV headers. `apple-touch-icon.png` is the 180 px home-screen icon.
 - `assets/ink/` — line icons for the six projects and the earlier hero image (still used as the social preview image). The hero network and MGM2 schematic are inline SVG in `index.html`. Design decisions and provenance: `docs/haohong-ink-design.md`. Earlier glass illustrations and SVG studies remain archived under `assets/projects/`.
 - `.nojekyll` — serve the repository as static files.
 - `scripts/version_assets.py` — update resource URL versions after CSS, JavaScript or icon changes.

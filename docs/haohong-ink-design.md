@@ -58,3 +58,10 @@ A full rebuild of the homepage structure and stylesheet in the same Haohong Ink 
 - **Code:** a shared-border 3×2 grid. **Footer:** a large serif sign-off and a ruled link list.
 - **Motion:** stroke draw-in for the hero, a dashed flow in the schematic, below-the-fold reveals and a header reading-progress line. All of it is disabled under `prefers-reduced-motion`; content never depends on JavaScript.
 - Verified at 1440 px and 375 px: no horizontal page overflow. On phones the schematic scrolls inside its card.
+
+## Logo and icon consistency — 13 October 2026
+
+- The owner-supplied HZ logo was traced to SVG with sub-pixel contours and simplification (3 shapes plus the gold square). It is used in the navigation, favicon, touch icon and CV headers.
+- Icon audit: all project icons use a 1.7 stroke on a 64 grid, and research icons use 1.3 on a 48 grid. Both render at about 1.5 px at their display sizes of 56 px. Removed fixed `width`/`height` attributes from three icons.
+- Project cards no longer switch to a white background on hover, which had exposed the MGM2 icon's ivory node fills. Hover now shows a gold top rule instead.
+- Research icon I: removed the stand that read as a lamp and replaced it with three input nodes. Icon III: the gene arrows now point the same way with gaps, reading as a gene cluster above a peptide chain.

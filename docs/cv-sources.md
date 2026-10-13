@@ -19,3 +19,10 @@ Skills summarize visible code use, not measured proficiency. Forked courses or r
 ## Rebuild and publish
 
 Run `python3 scripts/build_cv.py` in an environment with `reportlab`. The script reads publication and project text from `index.html`, embeds Arial and Georgia when available (otherwise standard Helvetica and Times), writes three linked PDFs under `assets/cv/`, and checks for page overflow. Then run `python3 scripts/version_assets.py` to refresh every PDF reference. Verify the six rendered pages after substantive edits.
+
+## October 2026 update
+
+- Selected peer-reviewed publications now include the *Advanced Genetics* review (doi:10.1002/ggn2.70046) and mHolmes in *Nature Communications* (doi:10.1038/s41467-026-77510-3). Sources are recorded in `SOURCES.md`.
+- The MGM2 preprint uses its v2 title and author list. The project description follows the website.
+- The 2024 *iScience* paper was dropped from the CV's selected list to keep two pages. It remains on the website.
+- Visual update to match the website: the HZ logo in the header, a gold period after the name, an ink masthead rule, numbered section heads with a gold accent, and DOI links inline with each citation.

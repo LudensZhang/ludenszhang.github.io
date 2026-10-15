@@ -130,3 +130,11 @@ Use case: logo-brand. Create a single elegant ABSTRACT RESEARCH BRAND MARK on a 
 ### Verification
 
 CSS and JavaScript compared byte-for-byte with `dacd116`; normalizing only the ten icon tags made HTML identical to that baseline. In normal motion mode, Claude's hero runs `drift`, `draw`, `breathe`, and `pop`, and its MGM2 schematic retains `flow`. All ten WebP images decoded at 56 × 56 px. Desktop and phone screenshots were reviewed for section 02 and project cards; no horizontal overflow. Asset hash checks passed.
+
+## Original Claude hero restored, with meteor overlay — 15 October 2026
+
+At the owner's request, all experimental hero redesigns are removed. The original Claude hero SVG is restored verbatim from dacd116 (also present in HEAD): its original viewBox, aspect ratio, ellipses, spokes, edges, nodes, core and original drift/draw/breathe/pop animations. All original CSS and site.js remain unchanged. The previously accepted project/research icons remain in place.
+
+A separate absolutely positioned decorative SVG adds only the requested meteor effect. Its first streak appears after six visible seconds, lasts 1.4 seconds, then repeats with 13/19/16/23-second gaps and four alternating trajectories. The flat blue/gold tail uses three fine strokes. The overlay clips to the original illustration, takes no layout space and ignores pointer input. Dedicated assets/hero-meteors.js controls only this layer, pauses it offscreen/in hidden tabs, and hides it with reduced motion. It does not control any original Claude animation. Previous hero-network.js and experimental rotation/signal styles are removed. The owner approved publishing this original-Claude-plus-meteors revision.
+
+Validation: the original hero SVG compares byte-for-byte with HEAD, and removing the meteor-only CSS block restores a byte-for-byte match with Claude's dacd116 stylesheet. Original site.js also matches dacd116. HTML outside the new overlay and asset links is unchanged from HEAD. Chromium confirms the original drift/draw/breathe/pop animations, spokes and all 36 nodes, plus a visible meteor; reduced motion hides the meteor; 390 px phone preview has no horizontal overflow. Desktop and phone screenshots are in output/playwright/hero-claude-meteor-*.png. JavaScript syntax and asset versions pass.

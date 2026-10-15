@@ -190,6 +190,13 @@ h1 { font-size:clamp(52px,7.4vw,104px); line-height:.98; letter-spacing:-.035em;
 @keyframes pop { from { opacity:0; } to { opacity:1; } }
 @keyframes drift { to { transform:rotate(360deg); } }
 @keyframes breathe { 50% { transform:scale(1.015); } }
+/* Independent meteor overlay; the original hero drawing and motion are unchanged. */
+.hero-meteors { position:absolute; inset:0; width:100%; height:100%; overflow:hidden; pointer-events:none; }
+.hero-meteors .meteor-tail { fill:none; stroke:var(--accent); stroke-linecap:round; }
+.hero-meteors .meteor-tail-far { stroke-width:.65; opacity:.18; }
+.hero-meteors .meteor-tail-mid { stroke-width:1; opacity:.4; }
+.hero-meteors .meteor-tail-near { stroke:var(--gold-deep); stroke-width:1.25; opacity:.85; }
+.hero-meteors .meteor-head { fill:var(--gold-deep); }
 .masthead {
   display:grid;
   grid-template-columns:1.5fr 1fr 1fr 1fr;

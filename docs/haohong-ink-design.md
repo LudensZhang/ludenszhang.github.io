@@ -65,3 +65,29 @@ A full rebuild of the homepage structure and stylesheet in the same Haohong Ink 
 - Icon audit: all project icons use a 1.7 stroke on a 64 grid, and research icons use 1.3 on a 48 grid. Both render at about 1.5 px at their display sizes of 56 px. Removed fixed `width`/`height` attributes from three icons.
 - Project cards no longer switch to a white background on hover, which had exposed the MGM2 icon's ivory node fills. Hover now shows a gold top rule instead.
 - Research icon I: removed the stand that read as a lamp and replaced it with three input nodes. Icon III: the gene arrows now point the same way with gaps, reading as a gene cluster above a peptide chain.
+
+
+## Local visual refinements — 15 October 2026
+
+Preserved the 13 October layout, palette, logo, research and project icons, publication data, CV files and analytics configuration. Replaced only the hero and MGM2 conceptual artwork using Codex's built-in image-generation tool. The local gpt-image CLI/API key was not configured, so no CLI call or explicit model override was made.
+
+- `assets/ink/community-network.webp`: a fine-line community constellation on warm ivory. A CSS radial mask blends the raster edges into the page. Decorative, empty alt text.
+- `assets/ink/mgm2-concept.webp`: three existing input modalities converge through a conceptual Transformer into a community representation. Explanatory labels and applications remain selectable HTML rather than raster lettering. Retains the conceptual-diagram caption; adds no performance or architecture claims.
+- Both originals were generated as 1536 × 1024 PNGs. Final WebP derivatives are 1440 × 960, encoded with cwebp quality 86, totaling 137,206 bytes. A transparency-edit candidate was discarded because it introduced unwanted glow.
+- Removed the phone-only 580 px schematic width. Real HTML labels fit at 320 px. Navigation now follows the section at a stable reading line on scroll and resize, correcting stale active links after jumps and viewport changes.
+
+Prompt craft: adapted the coordinated identity approach from the gpt-image brand gallery No. 60 (@LexnLin, source https://x.com/LexnLin/status/2046952493213429886) and structured conceptual-diagram grammar from its research-figure gallery, with the owner's Haohong Ink tokens. No reference artwork or logo was copied.
+
+### Final prompts
+
+**hero**
+
+Landscape 3:2 editorial scientific illustration, designed as a decorative artwork beside a large serif heading on a personal academic website. A single elegant abstract microbial community representation: a coherent softly tilted elliptical constellation made of roughly 60 tiny hollow navy nodes connected by fine precise flowing network lines, with a denser organized central core and 5 restrained gold nodes. Suggest biological diversity and learned community representations with nuanced rhythm and curvature. No literal planet, no satellite, no orbital atom symbol. Restrained scientific engraved linework, sophisticated print editorial craftsmanship, crisp contours, extremely subtle pale blue depth; no photorealism, no glass, no chunky 3D shapes. Background absolutely flat warm ivory #FBF8F2, not a rectangle with a visible border; all four edges must remain empty pure #FBF8F2 so the illustration integrates seamlessly with this page. Line palette ink navy #001F44, accent blue #314E93, a very small number of gold #E9BA35 highlights. Center the complete network silhouette within generous 12 percent margins, horizontal composition; no cropped lines. No letters, labels, title, watermark, frame, gradients or shadows.
+
+**mgm2**
+
+Landscape 3:2 scientific concept illustration for an academic homepage, polished editorial fine-line schematic on a completely flat solid dark navy #001F44 canvas, edges also exactly #001F44. Not a poster, no headline. Warm ivory #FBF8F2 and muted blue #9DB3D4 fine strokes, very sparse gold #FFD74B highlights. The diagram has three vertically aligned input symbols on the left: a short DNA strand, a clean relative-abundance bar motif, and three text-like sample-context lines. These THREE inputs flow through three uncluttered thin curves into ONE central softly rounded transformer stack of four layers, then into one compact community network representation on the right. Place a small cluster of nodes with varied radii as the representation. A single gold center node. The stack, inputs and community are horizontally balanced. Clear direction of flow with minimal arrowheads, no crisscrossing connectors. Precise restrained journal infographic aesthetic matching navy/ivory serif editorial website. Large shapes legible at 400 CSS pixels. CRITICAL: no text or lettering at all; all accessible explanatory labels will be placed as real HTML by the website. Do not add results, numerical measurements, new scientific claims, output task icons, decorative planets or additional modules. Keep all geometry within 10 percent outer margins. No gradients, shadows, textures, frames, logos, medical crosses, neon or 3D glass.
+
+### Verification
+
+Playwright checks at 320, 390, 768, 1080 and 1440 px: no page or figure overflow; correct MGM2 active state. All five navigation anchors selected their intended section. Archive journal filtering returned only journals; resetting showed all 20 archive entries. Desktop and mobile screenshots were reviewed. JavaScript syntax and content-based asset versions passed. Local console warnings came from the pre-existing Cloudflare analytics CORS behavior on localhost.

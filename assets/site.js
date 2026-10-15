@@ -7,6 +7,10 @@
     if (portrait.complete && !portrait.naturalWidth) hideBrokenPortrait();
   }
 
+  // Read the section at a stable reading line, including after viewport changes.
+  const links = Array.from(document.querySelectorAll('nav a[href^="#"]'));
+  const sections = links.map(link => document.querySelector(link.hash)).filter(Boolean);
+
   // Header hairline and gold reading-progress bar.
   const header = document.querySelector('.site-header');
   let ticking = false;
@@ -15,8 +19,15 @@
     const max = document.documentElement.scrollHeight - innerHeight;
     header.classList.toggle('scrolled', scrollY > 8);
     header.style.setProperty('--p', max > 0 ? Math.min(scrollY / max, 1).toFixed(4) : 0);
+    const readingLine = Math.max(header.getBoundingClientRect().height + 24, innerHeight * 0.25);
+    const active = sections.filter(section => section.getBoundingClientRect().top <= readingLine).pop();
+    for (const link of links) {
+      if (active && link.hash === `#${active.id}`) link.setAttribute('aria-current', 'location');
+      else link.removeAttribute('aria-current');
+    }
   };
   addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
+  addEventListener('resize', onScroll, { passive: true });
   onScroll();
 
   // Publication filters inside the archive.
@@ -66,21 +77,4 @@
     });
   }
 
-  // Active section in the navigation.
-  const links = Array.from(document.querySelectorAll('nav a[href^="#"]'));
-  const sections = links.map(link => document.querySelector(link.hash)).filter(Boolean);
-  const observer = new IntersectionObserver(entries => {
-    for (const entry of entries) {
-      if (!entry.isIntersecting) continue;
-      for (const link of links) {
-        if (link.hash === `#${entry.target.id}`) link.setAttribute('aria-current', 'location');
-        else link.removeAttribute('aria-current');
-      }
-    }
-  }, { rootMargin: '-20% 0px -55% 0px', threshold: 0 });
-  sections.forEach(section => observer.observe(section));
-  const hero = document.querySelector('#top');
-  if (hero) new IntersectionObserver(entries => {
-    if (entries.some(entry => entry.isIntersecting)) links.forEach(link => link.removeAttribute('aria-current'));
-  }, { threshold: 0.4 }).observe(hero);
 })();

@@ -20,8 +20,8 @@
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Haohong Zhang","url":"https://ludenszhang.github.io/","jobTitle":"Ph.D. student in Bioinformatics","affiliation":{"@type":"CollegeOrUniversity","name":"Huazhong University of Science and Technology"},"email":"mailto:haohongzh@gmail.com","sameAs":["https://github.com/LudensZhang","https://orcid.org/0000-0001-6267-4244","https://scholar.google.com/citations?user=e12kCmAAAAAJ","https://x.com/ludens_zhang","https://huggingface.co/LudensZhang"],"knowsAbout":["Microbiome","Foundation models","Bioinformatics","Machine learning"]}</script>
   <link rel="icon" href="assets/favicon.svg?v=8df700973ea13450" type="image/svg+xml">
   <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png?v=bb2daccb73b49382">
-  <link rel="stylesheet" href="assets/site.css?v=9fc0f93df6d6f129">
-  <script src="assets/site.js?v=3472db96abc1586c" defer></script>
+  <link rel="stylesheet" href="assets/site.css?v=f06033af51f12029">
+  <script src="assets/site.js?v=7d7f06edffdb84ba" defer></script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -45,7 +45,11 @@
       <p class="hero-description">I build foundation models to understand microbial communities and connect biological complexity with interpretable AI.</p>
       <div class="hero-actions"><a class="button" href="#publications">Explore research <span aria-hidden="true">↓</span></a><a class="text-link" href="assets/cv/Haohong-Zhang-CV.pdf?v=c15073e1066f2b4b" target="_blank" rel="noopener noreferrer">Curriculum vitae <span class="fmt">PDF</span>⁠<span class="arrow" aria-hidden="true">↗</span></a><a class="text-link" href="https://scholar.google.com/citations?user=e12kCmAAAAAJ&amp;hl=en" target="_blank" rel="noopener noreferrer">Google Scholar⁠<span class="arrow" aria-hidden="true">↗</span></a></div>
     </div>
-    <div class="hero-art"><img class="hero-network" src="assets/ink/community-network.webp?v=209981d940dcdcfa" alt="" width="1440" height="960" fetchpriority="high" decoding="async"></div>
+    <div class="hero-art motion-art"><div class="hero-visual"><img class="hero-network" src="assets/ink/community-network.webp?v=209981d940dcdcfa" alt="" width="1440" height="960" fetchpriority="high" decoding="async">
+      <svg class="hero-signals" viewBox="0 0 1536 1024" aria-hidden="true" focusable="false">
+        <g class="signal-traces"><path d="M470 306Q640 292 759 342Q824 350 919 344"/><path d="M505 554Q638 574 660 519Q710 488 793 493Q848 482 908 458"/><path d="M580 797Q640 688 710 629Q812 638 900 601Q975 601 1060 551"/></g>
+        <g class="signal-nodes"><circle cx="759" cy="342" r="11"/><circle cx="660" cy="519" r="11"/><circle cx="908" cy="458" r="11"/><circle cx="710" cy="629" r="11"/><circle cx="900" cy="601" r="11"/></g>
+      </svg></div></div>
   </div>
   <div class="wrap">
     <dl class="masthead">
@@ -114,7 +118,13 @@
       <div class="feature-actions"><a class="button light" href="https://www.biorxiv.org/content/10.64898/2026.07.20.739063v2" target="_blank" rel="noopener noreferrer">Read the v2 preprint⁠<span class="arrow" aria-hidden="true">↗</span></a><a class="text-link" href="https://github.com/HUST-NingKang-Lab/MGM2" target="_blank" rel="noopener noreferrer">Code⁠<span class="arrow" aria-hidden="true">↗</span></a><a class="text-link" href="https://huggingface.co/LudensZhang/MGM2" target="_blank" rel="noopener noreferrer">Model weights⁠<span class="arrow" aria-hidden="true">↗</span></a></div>
     </div>
     <figure class="feature-figure">
-      <img class="mgm2-art" src="assets/ink/mgm2-concept.webp?v=b77a3c76335bc85b" width="1440" height="960" loading="lazy" decoding="async" alt="Sequence, relative abundance and sample context converge into an abundance-aware Transformer, producing one shared microbial community representation.">
+      <div class="mgm2-visual motion-art"><img class="mgm2-art" src="assets/ink/mgm2-concept.webp?v=b77a3c76335bc85b" width="1440" height="960" loading="lazy" decoding="async" alt="Sequence, relative abundance and sample context converge into an abundance-aware Transformer, producing one shared microbial community representation.">
+        <svg class="mgm2-signals" viewBox="0 0 1536 1024" aria-hidden="true" focusable="false">
+          <g class="input-signals"><path d="M358 280C498 280 484 414 642 414"/><path d="M358 487H642"/><path d="M358 704C498 704 490 565 642 565"/></g>
+          <path class="output-signal" d="M973 487H1106"/>
+          <g class="layer-signals"><circle cx="809" cy="353" r="10"/><circle cx="809" cy="449" r="10"/><circle cx="809" cy="543" r="10"/><circle cx="809" cy="637" r="10"/></g>
+          <circle class="community-pulse" cx="1295" cy="488" r="25"/>
+        </svg></div>
       <dl class="diagram-key"><div><dt>Inputs</dt><dd>Sequence, abundance<br>and sample context</dd></div><div><dt>Model</dt><dd>Abundance-aware<br>Transformer</dd></div><div><dt>Community</dt><dd>Microbial<br>community state</dd></div></dl>
       <p class="diagram-uses"><span>Applications</span>Ecosystem classes · Transplant response · Drug effects · Recovery direction</p>
       <figcaption>Conceptual schematic of the MGM2 inputs and uses described in the v2 preprint; not an exact architecture diagram.</figcaption>

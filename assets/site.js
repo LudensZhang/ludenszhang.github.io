@@ -58,6 +58,13 @@
 
   if (!('IntersectionObserver' in window)) return;
 
+  // Pause decorative loops outside the viewport; real content stays independent.
+  const motionObserver = new IntersectionObserver(entries => {
+    for (const entry of entries) entry.target.classList.toggle('motion-paused', !entry.isIntersecting);
+  }, { rootMargin: '120px' });
+  document.querySelectorAll('.motion-art').forEach(element => motionObserver.observe(element));
+
+
   // Gentle reveal for content that starts below the fold; visible content is never hidden.
   if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
     document.documentElement.classList.add('js');

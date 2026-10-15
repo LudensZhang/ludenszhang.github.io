@@ -91,3 +91,9 @@ Landscape 3:2 scientific concept illustration for an academic homepage, polished
 ### Verification
 
 Playwright checks at 320, 390, 768, 1080 and 1440 px: no page or figure overflow; correct MGM2 active state. All five navigation anchors selected their intended section. Archive journal filtering returned only journals; resetting showed all 20 archive entries. Desktop and mobile screenshots were reviewed. JavaScript syntax and content-based asset versions passed. Local console warnings came from the pre-existing Cloudflare analytics CORS behavior on localhost.
+
+## Motion restoration - 15 October 2026
+
+The generated raster replacements had removed the original animated network and schematic paths. Retained the new artwork and restored motion with lightweight decorative SVG overlays: gentle whole-network drift, moving signal traces, breathing gold nodes, three input streams, sequential model-layer pulses and a community-state pulse. Overlay view boxes match the image coordinates; overlays are hidden from assistive technology, ignore pointer events and introduce no layout space. CSS respects `prefers-reduced-motion`; IntersectionObserver pauses decorative loops outside the viewport.
+
+Verification in normal motion mode compared the network transform and trace offset at different animation times, and confirmed running MGM2 flow. Offscreen pause and reduced-motion behavior passed (zero running decorative animations with reduced motion). Layout checks passed at 320, 390, 768 and 1440 px. Reviewed desktop and mobile screenshots. Existing reading-progress, scroll reveals and hover effects remain active.

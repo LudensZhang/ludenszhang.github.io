@@ -2,53 +2,54 @@
 
 A Haohong Ink static academic website for [ludenszhang.github.io](https://ludenszhang.github.io/), designed for GitHub Pages. No build process, package installation or server-side code is required.
 
-## Files
+## Files and design
 
-- `index.html` — hero with masthead, About, research directions, featured MGM2 v2 band, selected publications, filterable archive, project grid and footer.
-- `assets/site.css` — Haohong Ink design system: warm ivory, navy ink, Georgia display type, hairline grids, one deep-navy feature band, responsive layouts, reduced-motion, forced-colors and print styles.
-- `assets/site.js` — optional enhancements: active navigation, header reading-progress line, scroll reveals, archive filters (All / First author / Journal / Preprint / Abstract) and avatar fallback. All content, links and the archive work without JavaScript; filters stay hidden without it.
-- `assets/favicon.svg` — site icon: the HZ logo on an ivory tile.
-- `assets/brand/` — HZ logo. `hz-logo-source.png` is the owner-supplied original. `hz-logo.svg` is a vector trace (about 3 KB) with colors snapped to ink `#001F44` and gold `#E9BA35`, used in the navigation. `hz-logo.png` is the cropped, recolored raster used in CV headers. `apple-touch-icon.png` is the 180 px home-screen icon.
-- `assets/ink/` — line icons for the six projects and the earlier hero image (still used as the social preview image). The hero network and MGM2 schematic are inline SVG in `index.html`. Design decisions and provenance: `docs/haohong-ink-design.md`. Earlier glass illustrations and SVG studies remain archived under `assets/projects/`.
+- `index.html` — the selected personal research dossier: identity, About with education and CV, research interests, MGM2 v2, 25 publications, six open-source projects and contact details. Retains canonical, social and structured Person metadata.
+- `assets/dossier/base.css` — shared type, colors, controls, native details, focus and reduced-motion styles.
+- `assets/dossier/personal.css` — biography, research, paper and project components.
+- `assets/dossier/dossier.css` — the selected responsive layout. Warm ivory, navy, blue and small yellow/gold accents; Georgia and Helvetica Neue. Shared spacing scale and a 1480px maximum reading canvas. The HZ logo keeps its natural aspect ratio.
+- `assets/dossier/reading.js` — progressive scroll entrances, keyword/year filtering and citation copying, with a manual-copy fallback when clipboard access is unavailable.
+- `assets/dossier/interactions.js` — optional interaction enhancements, including opening one project file at a time.
+- `assets/dossier/sequence-mark.webp` — one small conceptual illustration, not a model architecture or experimental result. Original generation record: `assets/dossier/image-provenance.json`.
+- `assets/brand/` — owner-supplied HZ monogram, vector trace, CV raster and home-screen icon.
+- `assets/favicon.svg` — HZ site icon.
 - `.nojekyll` — serve the repository as static files.
-- `scripts/version_assets.py` — update resource URL versions after CSS, JavaScript or icon changes.
-- `SOURCES.md` — sources and scope of the September 2026 content update.
+- `scripts/version_assets.py` — refresh content-based resource URLs after edits.
+- `SOURCES.md` and `docs/cv-sources.md` — content sources.
 
-The page uses local system fonts. The GitHub avatar is optional and falls back to an initials mark if unavailable. Existing `assets/html2canvas.min.js` and `assets/liquidGL.js` have been preserved but are no longer loaded.
+The site uses local system fonts. Earlier design assets remain in the repository for history and are not dependencies of the current layout. Candidate designs, browser output and local tooling are not required for deployment.
 
-## Preview
+## Preview and GitHub Pages
 
-Run `python3 -m http.server 8765` from the repository, then open `http://localhost:8765`. Opening `index.html` directly also works.
+Run `python3 -m http.server 8765` from the repository, then open `http://localhost:8765`. The page also supports ordinary static-file hosting.
 
-## GitHub Pages
-
-Push the changes to the repository's publishing branch. In **Settings → Pages**, choose **Deploy from a branch**, select that branch, and use **/ (root)**. The website is served at `https://ludenszhang.github.io/`; no GitHub Actions workflow is needed for this setup. If Pages already publishes this branch and root directory, no settings changes are needed.
-
-## Web analytics
-
-`index.html` includes the Cloudflare Web Analytics beacon for `ludenszhang.github.io`. After publishing, sign in to the [Cloudflare dashboard](https://dash.cloudflare.com/), open **Web Analytics**, and select the site to view traffic. Data starts accumulating after the beacon is deployed; earlier visits cannot be recovered. Allow a few minutes after visiting the live site for data to appear. Ad blockers or network restrictions may prevent some visits from being recorded.
-
-The beacon's site token is a public identifier intended for the HTML snippet, not a Cloudflare API credential. Dashboard access still requires your Cloudflare account. Setup reference: [Cloudflare Web Analytics](https://developers.cloudflare.com/web-analytics/get-started/).
+GitHub Pages publishes the `main` branch's root directory at `https://ludenszhang.github.io/`. The site requires no framework runtime, backend or package installation.
 
 ## Updating content
 
-Edit content directly in `index.html`. Keep journal articles, preprints and conference abstracts clearly distinguished. Each `article.paper` carries `data-kind` (`journal`, `preprint` or `abstract`; reviews count as `journal`) and `data-first` (`true` when Haohong is the first-listed author) for the archive filters. Update the masthead publication count when adding entries. Update the footer date when revising content. New publication entries can follow the existing `article.paper` markup. Use DOI links when verified; other preserved entries link to an exact-title Scholar search.
+Edit content directly in `index.html`. Keep full publication titles, authors, keywords, year, kind and source URLs accurate. Each `article.paper-record` has `data-search` and `data-year` attributes used by the search and year filters. Its citation button carries the complete citation in `data-citation`. Keep these attributes synchronized with the visible record, and update year-group counts, year options and the initial paper count when adding papers. Preserve the embedded `personal-data` JSON as the structured copy of papers and projects.
 
-The September 2026 redesign preserves all 20 entries and all six projects from the previous homepage, adds two verified 2026 preprints, and updates MGM2's repository link. It does not maintain a live citation counter.
+All paper records are present in the HTML. Year groups, authors, project details, source links and CV links work without JavaScript. Search and automatic citation copying require JavaScript. Content stays visible when script loading fails or reduced motion is requested.
 
-## Asset caching
+After content or asset edits, run:
 
-CSS, JavaScript, favicon and project-icon links include a SHA-256 content version. This keeps newly deployed HTML from reusing a previous asset from the browser cache. After editing any of those files, run `python3 scripts/version_assets.py` and commit the updated `index.html` together with the changed assets. Verify before publishing with `python3 scripts/version_assets.py --check`. The script is idempotent, has no external dependencies, and does not run in the browser. The website still needs no build step to serve.
+```sh
+python3 scripts/version_assets.py
+python3 scripts/version_assets.py --check
+```
 
+Commit `index.html` with changed assets so the new HTML references matching content hashes. Preview desktop and mobile layouts and exercise any changed interaction before publishing.
 
 ## CV PDFs
 
-The hero's **View CV** link opens the general two-page English CV. About also links to academic and research/engineering variants. All three use the site's warm ivory, navy and blue palette with Georgia headings, contain selectable text and clickable links, and work as ordinary PDFs on GitHub Pages.
+The homepage's **View CV** link jumps to the three editions in About. Each opens an ordinary PDF with selectable text and clickable links:
 
 - `assets/cv/Haohong-Zhang-CV.pdf` — general research profile.
 - `assets/cv/Haohong-Zhang-CV-Academic.pdf` — publications and education first.
 - `assets/cv/Haohong-Zhang-CV-Research-Engineer.pdf` — technical skills and engineering projects first.
-- `scripts/build_cv.py` — reproducible PDF builder; requires ReportLab.
-- `docs/cv-sources.md` — evidence for additional honors, conference activity and technical skills.
 
-After content edits, run `python3 scripts/build_cv.py`, render and review all PDF pages, then run `python3 scripts/version_assets.py`. The version script updates all occurrences of each asset, including both general-CV links.
+The PDFs use the site's ivory, navy and blue palette. `scripts/build_cv.py` rebuilds them with ReportLab; see `docs/cv-sources.md` for sources. After changing PDF content, render and review every page, then refresh asset versions.
+
+## Web analytics
+
+The homepage retains the existing Cloudflare Web Analytics beacon and site configuration. Traffic is available in Cloudflare's Web Analytics dashboard; the HTML snippet's site token is a public identifier, not an API credential. Ad blockers or network restrictions can prevent visits from being recorded. Dashboard access still requires the owner's Cloudflare account.

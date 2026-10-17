@@ -4,20 +4,19 @@ A Haohong Ink static academic website for [ludenszhang.github.io](https://ludens
 
 ## Files and design
 
-- `index.html` — the selected personal research dossier: identity, About with education and CV, research interests, MGM2 v2, 25 publications, six open-source projects and contact details. Retains canonical, social and structured Person metadata.
-- `assets/dossier/base.css` — shared type, colors, controls, native details, focus and reduced-motion styles.
-- `assets/dossier/personal.css` — biography, research, paper and project components.
-- `assets/dossier/dossier.css` — the selected responsive layout. Warm ivory, navy, blue and small yellow/gold accents; Georgia and Helvetica Neue. Shared spacing scale and a 1480px maximum reading canvas. The HZ logo keeps its natural aspect ratio.
-- `assets/dossier/reading.js` — progressive scroll entrances, keyword/year filtering and citation copying, with a manual-copy fallback when clipboard access is unavailable.
-- `assets/dossier/interactions.js` — optional interaction enhancements, including opening one project file at a time.
-- `assets/dossier/sequence-mark.webp` — one small conceptual illustration, not a model architecture or experimental result. Original generation record: `assets/dossier/image-provenance.json`.
+- `index.html` — the homepage: identity, recent work, research and MGM2, 25 publications, six projects, education, three CV links, and contact. Canonical, social, and Person metadata stay in the head.
+- `assets/home/home.css` and `assets/home/home.js` — layout, type, paper filters, and citation copy. The page stays readable without JavaScript; search and citation copy need it.
+- `assets/home/plate.jpg` — a still life made for the page. It is decorative, not a result or a diagram.
+- `assets/home/og.jpg` — the social card, 1200 × 630.
+- `assets/fonts/` — self-hosted Newsreader and IBM Plex, both SIL Open Font License. See `assets/fonts/NOTICE.txt`.
 - `assets/brand/` — owner-supplied HZ monogram, vector trace, CV raster and home-screen icon.
-- `assets/favicon.svg` — HZ site icon.
+- `assets/favicon.svg` — site icon.
+- `assets/dossier/` — the previous layout. It stays in the repository and is not used by the current page.
 - `.nojekyll` — serve the repository as static files.
 - `scripts/version_assets.py` — refresh content-based resource URLs after edits.
 - `SOURCES.md` and `docs/cv-sources.md` — content sources.
 
-The site uses local system fonts. Earlier design assets remain in the repository for history and are not dependencies of the current layout. Candidate designs, browser output and local tooling are not required for deployment.
+Earlier design assets remain in the repository for history and are not dependencies of the current layout. Candidate designs, browser output and local tooling are not required for deployment.
 
 ## Preview and GitHub Pages
 
@@ -27,7 +26,7 @@ GitHub Pages publishes the `main` branch's root directory at `https://ludenszhan
 
 ## Updating content
 
-Edit content directly in `index.html`. Keep full publication titles, authors, keywords, year, kind and source URLs accurate. Each `article.paper-record` has `data-search` and `data-year` attributes used by the search and year filters. Its citation button carries the complete citation in `data-citation`. Keep these attributes synchronized with the visible record, and update year-group counts, year options and the initial paper count when adding papers. Preserve the embedded `personal-data` JSON as the structured copy of papers and projects.
+Edit content directly in `index.html`. Keep full publication titles, authors, keywords, year, kind and source URLs accurate. Each `article.paper` has `data-search`, `data-year`, `data-kind` and `data-themes` attributes used by the filters. Its citation button carries the complete citation in `data-citation`. Keep these attributes synchronized with the visible record, and update the year and kind options when adding papers. Preserve the embedded `personal-data` JSON as the structured copy of papers and projects. The CV builder reads `article.paper` and `a.project` from this file; keep those class names and the title link's `href` as its first attribute.
 
 All paper records are present in the HTML. Year groups, authors, project details, source links and CV links work without JavaScript. Search and automatic citation copying require JavaScript. Content stays visible when script loading fails or reduced motion is requested.
 

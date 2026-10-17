@@ -1,0 +1,9 @@
+Newsreader
+Copyright 2019 The Newsreader Project Authors (https://github.com/productiontype/Newsreader)
+Licensed under the SIL Open Font License, Version 1.1. Full text: OFL-Newsreader.txt
+Latin subset (weights 400, 500, 600 and italics 400, 500) via Fontsource.
+
+IBM Plex Sans and IBM Plex Mono
+Copyright 2017 IBM Corp. Licensed under the SIL Open Font License, Version 1.1.
+Full text: OFL-IBM-Plex.txt
+Latin subset (IBM Plex Sans 400/500, IBM Plex Mono 400/500) via Fontsource.

@@ -1,54 +1,51 @@
-# Haohong Zhang · Personal homepage
+# Haohong Zhang · Dispatch
 
-A Haohong Ink static academic website for [ludenszhang.github.io](https://ludenszhang.github.io/), designed for GitHub Pages. No build process, package installation or server-side code is required.
+A static academic personal website for [ludenszhang.github.io](https://ludenszhang.github.io/), using the selected Dispatch / 朱印 design: paper, ink, vermilion, a condensed personal masthead and editorial columns. GitHub Pages serves the `main` branch root. No server-side runtime or package installation is needed to browse the site.
 
-## Files and design
+## Layout and assets
 
-- `index.html` — the homepage: identity, recent work, research and MGM2, 25 publications, six projects, education, three CV links, and contact. Canonical, social, and Person metadata stay in the head.
-- `assets/home/home.css` and `assets/home/home.js` — layout, type, paper filters, and citation copy. The page stays readable without JavaScript; search and citation copy need it.
-- `assets/home/plate.jpg` — a still life made for the page. It is decorative, not a result or a diagram.
-- `assets/home/og.jpg` — the social card, 1200 × 630.
-- `assets/fonts/` — self-hosted Newsreader and IBM Plex, both SIL Open Font License. See `assets/fonts/NOTICE.txt`.
-- `assets/brand/` — owner-supplied HZ monogram, vector trace, CV raster and home-screen icon.
-- `assets/favicon.svg` — site icon.
-- `assets/dossier/` — the previous layout. It stays in the repository and is not used by the current page.
-- `.nojekyll` — serve the repository as static files.
-- `scripts/version_assets.py` — refresh content-based resource URLs after edits.
-- `SOURCES.md` and `docs/cv-sources.md` — content sources.
+- `index.html`: personal profile, recent research, themes and MGM2, 25 papers, six repositories, education, three CV editions and contact. Canonical, social, Person metadata and the existing Cloudflare analytics configuration are retained.
+- `assets/dispatch/dispatch.css`, `tokens.css`, `base.css`: the selected responsive design.
+- `assets/dispatch/interactions.js`: publication search, year/type/theme filters, citation copy and navigation state. Original native disclosures keep the full record readable without JavaScript.
+- `assets/dispatch/fonts.css` and `fonts/`: locally hosted Six Caps, Bevan and Archivo Narrow. WOFF2 is used on the web; static TrueType instances are embedded in the PDFs. See the SIL Open Font License files and NOTICE.
+- `assets/dispatch/hz-mark.png`: the new selected HZ monogram; its conceptual identity provenance is recorded in `image-provenance.json`.
+- `assets/data/personal.json`: a portable copy of the publication/project record. The `personal-data` script in the page is the CV builder's input; keep both in sync.
+- `assets/cv/`: three two-page, searchable, linked PDFs in the same visual system.
+- `SOURCES.md` and `docs/cv-sources.md`: factual sources and CV editorial scope.
 
-Earlier design assets remain in the repository for history and are not dependencies of the current layout. Candidate designs, browser output and local tooling are not required for deployment.
+Earlier design assets remain in the repository for history but are not loaded by the selected homepage. Unselected local candidates and browser inspection outputs are not deployment dependencies.
 
-## Preview and GitHub Pages
+## Preview
 
-Run `python3 -m http.server 8765` from the repository, then open `http://localhost:8765`. The page also supports ordinary static-file hosting.
+From the repository root:
 
-GitHub Pages publishes the `main` branch's root directory at `https://ludenszhang.github.io/`. The site requires no framework runtime, backend or package installation.
+```sh
+python3 -m http.server 8765 --bind 127.0.0.1
+```
 
-## Updating content
+Open `http://127.0.0.1:8765/`. All production resources use relative links and work on GitHub Pages.
 
-Edit content directly in `index.html`. Keep full publication titles, authors, keywords, year, kind and source URLs accurate. Each `article.paper` has `data-search`, `data-year`, `data-kind` and `data-themes` attributes used by the filters. Its citation button carries the complete citation in `data-citation`. Keep these attributes synchronized with the visible record, and update the year and kind options when adding papers. Preserve the embedded `personal-data` JSON as the structured copy of papers and projects. The CV builder reads `article.paper` and `a.project` from this file; keep those class names and the title link's `href` as its first attribute.
+## Update content
 
-All paper records are present in the HTML. Year groups, authors, project details, source links and CV links work without JavaScript. Search and automatic citation copying require JavaScript. Content stays visible when script loading fails or reduced motion is requested.
+Edit the semantic HTML and its embedded `personal-data` JSON together. Preserve complete scientific titles, author strings, publication types, source links and the `data-year`, `data-kind`, `data-themes`, `data-search` filter attributes. Keep citation button text and the portable JSON synchronized. Paper author records and older papers expand natively; search and clipboard copy need JavaScript.
 
-After content or asset edits, run:
+After changing HTML or assets:
 
 ```sh
 python3 scripts/version_assets.py
 python3 scripts/version_assets.py --check
 ```
 
-Commit `index.html` with changed assets so the new HTML references matching content hashes. Preview desktop and mobile layouts and exercise any changed interaction before publishing.
+This hashes all directly referenced CSS, script, image and PDF resources so the page does not reuse stale files after deployment. Check desktop and mobile layouts and exercise changed interactions before publishing.
 
-## CV PDFs
+## CV editions
 
-The homepage's **View CV** link jumps to the three editions in About. Each opens an ordinary PDF with selectable text and clickable links:
+- General CV: profile, education, skills and research software first.
+- Academic CV: education and selected peer-reviewed publications first.
+- Research & engineering CV: technical skills and source-backed engineering projects first.
 
-- `assets/cv/Haohong-Zhang-CV.pdf` — general research profile.
-- `assets/cv/Haohong-Zhang-CV-Academic.pdf` — publications and education first.
-- `assets/cv/Haohong-Zhang-CV-Research-Engineer.pdf` — technical skills and engineering projects first.
+All three retain two A4 pages with selectable text, clickable links and embedded fonts. Rebuild with `python3 scripts/build_cv.py` in an environment with `reportlab` and `pypdf`. No network is needed to rebuild: all font files are bundled. The builder reads the embedded factual record and uses only the additional details documented in `docs/cv-sources.md`. It checks page overflow and verifies author/editor metadata as Haohong Zhang. Render and inspect all six pages after edits, then refresh asset hashes.
 
-The PDFs use the site's ivory, navy and blue palette. `scripts/build_cv.py` rebuilds them with ReportLab; see `docs/cv-sources.md` for sources. After changing PDF content, render and review every page, then refresh asset versions.
+## Analytics
 
-## Web analytics
-
-The homepage retains the existing Cloudflare Web Analytics beacon and site configuration. Traffic is available in Cloudflare's Web Analytics dashboard; the HTML snippet's site token is a public identifier, not an API credential. Ad blockers or network restrictions can prevent visits from being recorded. Dashboard access still requires the owner's Cloudflare account.
+The existing Cloudflare Web Analytics beacon is preserved. Its site token is a public identifier. Blocking extensions or network restrictions can prevent analytics requests; dashboard access remains with the owner's account.

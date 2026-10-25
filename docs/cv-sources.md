@@ -1,6 +1,12 @@
+---
+author: Haohong Zhang
+last_modified_by: Haohong Zhang
+updated: 2026-10-25
+---
+
 # CV sources and editorial scope
 
-Content verified 10 September 2026; visual design updated 16 September 2026. Three English versions share the same factual record:
+Content verified 10 September 2026; visual design updated 25 October 2026. Three English versions share the same factual record:
 general CV, academic CV, and research/engineering CV. Each is two A4 pages.
 
 ## Sources
@@ -18,7 +24,7 @@ Skills summarize visible code use, not measured proficiency. Forked courses or r
 
 ## Rebuild and publish
 
-Run `python3 scripts/build_cv.py` in an environment with `reportlab`. The script reads publication and project text from `index.html`, embeds Arial and Georgia when available (otherwise standard Helvetica and Times), writes three linked PDFs under `assets/cv/`, and checks for page overflow. Then run `python3 scripts/version_assets.py` to refresh every PDF reference. Verify the six rendered pages after substantive edits.
+Run `python3 scripts/build_cv.py` in an environment with `reportlab` and `pypdf`. The script reads the embedded `personal-data` publication/project JSON from `index.html`, embeds the selected Dispatch fonts bundled in `assets/dispatch/fonts/`, writes three linked PDFs under `assets/cv/`, checks page overflow and verifies final metadata. No network or platform-specific fonts are required. Then run `python3 scripts/version_assets.py` to refresh PDF references. Render and verify all six pages after substantive edits.
 
 ## October 2026 update
 
@@ -26,3 +32,9 @@ Run `python3 scripts/build_cv.py` in an environment with `reportlab`. The script
 - The MGM2 preprint uses its v2 title and author list. The project description follows the website.
 - The 2024 *iScience* paper was dropped from the CV's selected list to keep two pages. It remains on the website.
 - Visual update to match the website: the HZ logo in the header, a gold period after the name, an ink masthead rule, numbered section heads with a gold accent, and DOI links inline with each citation.
+
+## Dispatch selection, 25 October 2026
+
+The user selected candidate A (Dispatch / 朱印). The three CVs now share its buff paper, black ink, vermilion links and new HZ mark, Six Caps nameplate, Bevan section heads and Archivo Narrow text. All existing substantive CV content and the distinction between journal articles and preprints are retained. The source of paper/project facts is the embedded owner-maintained JSON, which is independent of the rendered HTML layout.
+
+The four TrueType files are static PDF instances of the same OFL-licensed families used in the browser; Archivo Narrow 400 and 600 are instantiated at their actual weights. All author, creator, producer, editor and last-modified identity fields are Haohong Zhang, including XMP creator metadata. Link annotations remain interactive. No substantive comments or revisions are removed as a metadata-cleanup shortcut. Final files are reopened and verified by the builder.
